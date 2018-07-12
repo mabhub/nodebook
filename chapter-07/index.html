@@ -1,0 +1,4265 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.7.1">
+<title>Créer une application web</title>
+<style>
+/* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
+/* Uncomment @import statement below to use as custom stylesheet */
+/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+  display: block;
+}
+audio,
+canvas,
+video {
+  display: inline-block;
+}
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+script {
+  display: none !important;
+}
+html {
+  /* font-family: sans-serif; */
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+a {
+  background: transparent;
+}
+a:focus {
+  outline: thin dotted;
+}
+a:active,
+a:hover {
+  outline: 0;
+}
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+b,
+strong {
+  font-weight: bold;
+}
+dfn {
+  font-style: italic;
+}
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+mark {
+  background: #ff0;
+  color: #000;
+}
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace;
+  font-size: 1em;
+}
+pre {
+  white-space: pre-wrap;
+}
+q {
+  quotes: '\201C' '\201D' '\2018' '\2019';
+}
+small {
+  font-size: 80%;
+}
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+img {
+  border: 0;
+}
+svg:not(:root) {
+  overflow: hidden;
+}
+figure {
+  margin: 0;
+}
+fieldset {
+  border: 1px solid silver;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+legend {
+  border: 0;
+  padding: 0;
+}
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  margin: 0;
+}
+button,
+input {
+  line-height: normal;
+}
+button,
+select {
+  text-transform: none;
+}
+button,
+html input[type='button'],
+input[type='reset'],
+input[type='submit'] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+input[type='checkbox'],
+input[type='radio'] {
+  box-sizing: border-box;
+  padding: 0;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+textarea {
+  overflow: auto;
+  vertical-align: top;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+*,
+*::before,
+*::after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html,
+body {
+  font-size: 18px;
+}
+body {
+  background: #fff;
+  color: rgba(0, 0, 0, 0.8);
+  padding: 0;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.5;
+  position: relative;
+  cursor: auto;
+  tab-size: 4;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+a:hover {
+  cursor: pointer;
+}
+img,
+object,
+embed {
+  max-width: 100%;
+  height: auto;
+}
+object,
+embed {
+  height: 100%;
+}
+img {
+  -ms-interpolation-mode: bicubic;
+}
+.left {
+  float: left !important;
+}
+.right {
+  float: right !important;
+}
+.text-left {
+  text-align: left !important;
+}
+.text-right {
+  text-align: right !important;
+}
+.text-center {
+  text-align: center !important;
+}
+.text-justify {
+  text-align: justify !important;
+}
+.hide {
+  display: none;
+}
+img,
+object,
+svg {
+  display: inline-block;
+  vertical-align: middle;
+}
+textarea {
+  height: auto;
+  min-height: 50px;
+}
+select {
+  width: 100%;
+}
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+.stretch {
+  width: 100%;
+}
+p.lead,
+.paragraph.lead > p,
+#preamble > .sectionbody > .paragraph:first-of-type p {
+  font-size: 1.21875em;
+  line-height: 1.6;
+}
+.subheader,
+.admonitionblock td.content > .title,
+.audioblock > .title,
+.exampleblock > .title,
+.imageblock > .title,
+.listingblock > .title,
+.literalblock > .title,
+.stemblock > .title,
+.openblock > .title,
+.paragraph > .title,
+.quoteblock > .title,
+table.tableblock > .title,
+.verseblock > .title,
+.videoblock > .title,
+.dlist > .title,
+.olist > .title,
+.ulist > .title,
+.qlist > .title,
+.hdlist > .title {
+  line-height: 1.45;
+  color: #7a2518;
+  font-weight: 400;
+  margin-top: 0;
+  margin-bottom: 0.25em;
+}
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+#toctitle,
+.sidebarblock > .content > .title,
+h4,
+h5,
+h6,
+pre,
+form,
+p,
+blockquote,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  direction: ltr;
+}
+a {
+  color: #2156a5;
+  text-decoration: underline;
+  line-height: inherit;
+}
+a:hover,
+a:focus {
+  color: #1d4b8f;
+}
+a img {
+  border: none;
+}
+p {
+  font-family: inherit;
+  font-weight: 400;
+  font-size: 1em;
+  line-height: 1.6;
+  margin-bottom: 1.25em;
+  text-rendering: optimizeLegibility;
+}
+p aside {
+  font-size: 0.875em;
+  line-height: 1.35;
+  font-style: italic;
+}
+h1,
+h2,
+h3,
+#toctitle,
+.sidebarblock > .content > .title,
+h4,
+h5,
+h6 {
+  font-family: 'Open Sans', 'DejaVu Sans', sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  color: #ba3925;
+  text-rendering: optimizeLegibility;
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  line-height: 1.0125em;
+}
+h1 small,
+h2 small,
+h3 small,
+#toctitle small,
+.sidebarblock > .content > .title small,
+h4 small,
+h5 small,
+h6 small {
+  font-size: 60%;
+  color: #e99b8f;
+  line-height: 0;
+}
+h1 {
+  font-size: 2.125em;
+}
+h2 {
+  font-size: 1.6875em;
+}
+h3,
+#toctitle,
+.sidebarblock > .content > .title {
+  font-size: 1.375em;
+}
+h4,
+h5 {
+  font-size: 1.125em;
+}
+h6 {
+  font-size: 1em;
+}
+hr {
+  border: solid #ddddd8;
+  border-width: 1px 0 0;
+  clear: both;
+  margin: 1.25em 0 1.1875em;
+  height: 0;
+}
+em,
+i {
+  font-style: italic;
+  line-height: inherit;
+}
+strong,
+b {
+  font-weight: bold;
+  line-height: inherit;
+}
+small {
+  font-size: 60%;
+  line-height: inherit;
+}
+code {
+  font-family: 'Droid Sans Mono', 'DejaVu Sans Mono', monospace;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.9);
+}
+ul,
+ol,
+dl {
+  font-size: 1em;
+  line-height: 1.6;
+  margin-bottom: 1.25em;
+  list-style-position: outside;
+  font-family: inherit;
+}
+ul,
+ol {
+  margin-left: 1.5em;
+}
+ul li ul,
+ul li ol {
+  margin-left: 1.25em;
+  margin-bottom: 0;
+  font-size: 1em;
+}
+ul.square li ul,
+ul.circle li ul,
+ul.disc li ul {
+  list-style: inherit;
+}
+ul.square {
+  list-style-type: square;
+}
+ul.circle {
+  list-style-type: circle;
+}
+ul.disc {
+  list-style-type: disc;
+}
+ol li ul,
+ol li ol {
+  margin-left: 1.25em;
+  margin-bottom: 0;
+}
+dl dt {
+  margin-bottom: 0.3125em;
+  font-weight: bold;
+}
+dl dd {
+  margin-bottom: 1.25em;
+}
+abbr,
+acronym {
+  text-transform: uppercase;
+  font-size: 90%;
+  color: rgba(0, 0, 0, 0.8);
+  border-bottom: 1px dotted #ddd;
+  cursor: help;
+}
+abbr {
+  text-transform: none;
+}
+blockquote {
+  margin: 0 0 1.25em;
+  padding: 0.5625em 1.25em 0 1.1875em;
+  border-left: 1px solid #ddd;
+}
+blockquote cite {
+  display: block;
+  font-size: 0.9375em;
+  color: rgba(0, 0, 0, 0.6);
+}
+blockquote cite::before {
+  content: '\2014 \0020';
+}
+blockquote cite a,
+blockquote cite a:visited {
+  color: rgba(0, 0, 0, 0.6);
+}
+blockquote,
+blockquote p {
+  line-height: 1.6;
+  color: rgba(0, 0, 0, 0.85);
+}
+@media only screen and (min-width: 768px) {
+  h1,
+  h2,
+  h3,
+  #toctitle,
+  .sidebarblock > .content > .title,
+  h4,
+  h5,
+  h6 {
+    line-height: 1.2;
+  }
+  h1 {
+    font-size: 2.75em;
+  }
+  h2 {
+    font-size: 2.3125em;
+  }
+  h3,
+  #toctitle,
+  .sidebarblock > .content > .title {
+    font-size: 1.6875em;
+  }
+  h4 {
+    font-size: 1.4375em;
+  }
+}
+table {
+  background: #fff;
+  margin-bottom: 1.25em;
+  border: solid 1px #dedede;
+}
+table thead,
+table tfoot {
+  background: #f7f8f7;
+}
+table thead tr th,
+table thead tr td,
+table tfoot tr th,
+table tfoot tr td {
+  padding: 0.5em 0.625em 0.625em;
+  font-size: inherit;
+  color: rgba(0, 0, 0, 0.8);
+  text-align: left;
+}
+table tr th,
+table tr td {
+  padding: 0.5625em 0.625em;
+  font-size: inherit;
+  color: rgba(0, 0, 0, 0.8);
+}
+table tr.even,
+table tr.alt,
+table tr:nth-of-type(even) {
+  background: #f8f8f7;
+}
+table thead tr th,
+table tfoot tr th,
+table tbody tr td,
+table tr td,
+table tfoot tr td {
+  display: table-cell;
+  line-height: 1.6;
+}
+h1,
+h2,
+h3,
+#toctitle,
+.sidebarblock > .content > .title,
+h4,
+h5,
+h6 {
+  line-height: 1.2;
+  word-spacing: -0.05em;
+}
+h1 strong,
+h2 strong,
+h3 strong,
+#toctitle strong,
+.sidebarblock > .content > .title strong,
+h4 strong,
+h5 strong,
+h6 strong {
+  font-weight: 400;
+}
+.clearfix::before,
+.clearfix::after,
+.float-group::before,
+.float-group::after {
+  content: ' ';
+  display: table;
+}
+.clearfix::after,
+.float-group::after {
+  clear: both;
+}
+*:not(pre) > code {
+  font-size: 0.9375em;
+  font-style: normal !important;
+  letter-spacing: 0;
+  padding: 0.1em 0.5ex;
+  word-spacing: -0.15em;
+  background-color: #f7f7f8;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  line-height: 1.45;
+  text-rendering: optimizeSpeed;
+  word-wrap: break-word;
+}
+*:not(pre) > code.nobreak {
+  word-wrap: normal;
+}
+*:not(pre) > code.nowrap {
+  white-space: nowrap;
+}
+pre,
+pre > code {
+  line-height: 1.45;
+  color: rgba(0, 0, 0, 0.9);
+  font-family: 'Droid Sans Mono', 'DejaVu Sans Mono', monospace;
+  font-weight: 400;
+  text-rendering: optimizeSpeed;
+}
+em em {
+  font-style: normal;
+}
+strong strong {
+  font-weight: 400;
+}
+.keyseq {
+  color: rgba(51, 51, 51, 0.8);
+}
+kbd {
+  font-family: 'Droid Sans Mono', 'DejaVu Sans Mono', monospace;
+  display: inline-block;
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 0.65em;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 0.1em white inset;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 0.1em #fff inset;
+  margin: 0 0.15em;
+  padding: 0.2em 0.5em;
+  vertical-align: middle;
+  position: relative;
+  top: -0.1em;
+  white-space: nowrap;
+}
+.keyseq kbd:first-child {
+  margin-left: 0;
+}
+.keyseq kbd:last-child {
+  margin-right: 0;
+}
+.menuseq,
+.menuref {
+  color: #000;
+}
+.menuseq b:not(.caret),
+.menuref {
+  font-weight: inherit;
+}
+.menuseq {
+  word-spacing: -0.02em;
+}
+.menuseq b.caret {
+  font-size: 1.25em;
+  line-height: 0.8;
+}
+.menuseq i.caret {
+  font-weight: bold;
+  text-align: center;
+  width: 0.45em;
+}
+b.button::before,
+b.button::after {
+  position: relative;
+  top: -1px;
+  font-weight: 400;
+}
+b.button::before {
+  content: '[';
+  padding: 0 3px 0 2px;
+}
+b.button::after {
+  content: ']';
+  padding: 0 2px 0 3px;
+}
+p a > code:hover {
+  color: rgba(0, 0, 0, 0.9);
+}
+#header,
+#content,
+#footnotes,
+#footer {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+  max-width: 62.5em;
+  *zoom: 1;
+  position: relative;
+  padding-left: 0.9375em;
+  padding-right: 0.9375em;
+}
+#header::before,
+#header::after,
+#content::before,
+#content::after,
+#footnotes::before,
+#footnotes::after,
+#footer::before,
+#footer::after {
+  content: ' ';
+  display: table;
+}
+#header::after,
+#content::after,
+#footnotes::after,
+#footer::after {
+  clear: both;
+}
+#content {
+  margin-top: 1.25em;
+}
+#content::before {
+  content: none;
+}
+#header > h1:first-child {
+  color: rgba(0, 0, 0, 0.85);
+  margin-top: 2.25rem;
+  margin-bottom: 0;
+}
+#header > h1:first-child + #toc {
+  margin-top: 8px;
+  border-top: 1px solid #ddddd8;
+}
+#header > h1:only-child,
+body.toc2 #header > h1:nth-last-child(2) {
+  border-bottom: 1px solid #ddddd8;
+  padding-bottom: 8px;
+}
+#header .details {
+  border-bottom: 1px solid #ddddd8;
+  line-height: 1.45;
+  padding-top: 0.25em;
+  padding-bottom: 0.25em;
+  padding-left: 0.25em;
+  color: rgba(0, 0, 0, 0.6);
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -ms-flex-flow: row wrap;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+}
+#header .details span:first-child {
+  margin-left: -0.125em;
+}
+#header .details span.email a {
+  color: rgba(0, 0, 0, 0.85);
+}
+#header .details br {
+  display: none;
+}
+#header .details br + span::before {
+  content: '\00a0\2013\00a0';
+}
+#header .details br + span.author::before {
+  content: '\00a0\22c5\00a0';
+  color: rgba(0, 0, 0, 0.85);
+}
+#header .details br + span#revremark::before {
+  content: '\00a0|\00a0';
+}
+#header #revnumber {
+  text-transform: capitalize;
+}
+#header #revnumber::after {
+  content: '\00a0';
+}
+#content > h1:first-child:not([class]) {
+  color: rgba(0, 0, 0, 0.85);
+  border-bottom: 1px solid #ddddd8;
+  padding-bottom: 8px;
+  margin-top: 0;
+  padding-top: 1rem;
+  margin-bottom: 1.25rem;
+}
+#toc {
+  border-bottom: 1px solid #efefed;
+  padding-bottom: 0.5em;
+}
+#toc > ul {
+  margin-left: 0.125em;
+}
+#toc ul.sectlevel0 > li > a {
+  font-style: italic;
+}
+#toc ul.sectlevel0 ul.sectlevel1 {
+  margin: 0.5em 0;
+}
+#toc ul {
+  font-family: Gill Sans, Gill Sans MT, Calibri, sans-serif;
+  list-style-type: none;
+}
+#toc li {
+  line-height: 1.3334;
+  margin-top: 0.3334em;
+}
+#toc a {
+  text-decoration: none;
+  white-space: normal;
+}
+#toc a:active {
+  text-decoration: underline;
+}
+#toctitle {
+  color: #7a2518;
+  font-size: 1.2em;
+}
+@media only screen and (min-width: 768px) {
+  #toctitle {
+    font-size: 1.375em;
+  }
+  body.toc2 {
+    padding-left: 16em;
+    padding-right: 1em;
+  }
+  #toc.toc2 {
+    margin-top: 0 !important;
+    background-color: #f8f8f7;
+    position: fixed;
+    width: 15em;
+    left: 0;
+    top: 0;
+    border-right: 1px solid #efefed;
+    border-top-width: 0 !important;
+    border-bottom-width: 0 !important;
+    z-index: 1000;
+    padding: 1.25em 1em;
+    height: 100%;
+    overflow: auto;
+  }
+  #toc.toc2 #toctitle {
+    margin-top: 0;
+    margin-bottom: 0.8rem;
+    font-size: 1.2em;
+  }
+  #toc.toc2 > ul {
+    font-size: 0.85em;
+    margin-bottom: 0;
+  }
+  #toc.toc2 ul ul {
+    margin-left: 0;
+    padding-left: 1em;
+  }
+  #toc.toc2 ul.sectlevel0 ul.sectlevel1 {
+    padding-left: 0;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+  body.toc2.toc-right {
+    padding-left: 0;
+    padding-right: 15em;
+  }
+  body.toc2.toc-right #toc.toc2 {
+    border-right-width: 0;
+    border-left: 1px solid #efefed;
+    left: auto;
+    right: 0;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  body.toc2 {
+    padding-left: 27%;
+    padding-left: 27vw;
+    padding-right: 2%;
+    padding-right: 2vw;
+  }
+  #toc.toc2 {
+    width: 25%;
+    width: 25vw;
+  }
+  #toc.toc2 #toctitle {
+    font-size: 1.375em;
+  }
+  #toc.toc2 ul ul {
+    padding-left: 1.25em;
+  }
+  body.toc2.toc-right {
+    padding-left: 0;
+    padding-right: 20em;
+  }
+}
+#content #toc {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #e0e0dc;
+  margin-bottom: 1.25em;
+  padding: 1.25em;
+  background: #f8f8f7;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+#content #toc > :first-child {
+  margin-top: 0;
+}
+#content #toc > :last-child {
+  margin-bottom: 0;
+}
+#footer {
+  max-width: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 1.25em;
+}
+#footer-text {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.44;
+}
+#content {
+  margin-bottom: 0.625em;
+}
+.sect1 {
+  padding-bottom: 0.625em;
+}
+@media only screen and (min-width: 768px) {
+  #content {
+    margin-bottom: 1.25em;
+  }
+  .sect1 {
+    padding-bottom: 1.25em;
+  }
+}
+.sect1:last-child {
+  padding-bottom: 0;
+}
+.sect1 + .sect1 {
+  border-top: 1px solid #efefed;
+}
+#content h1 > a.anchor,
+h2 > a.anchor,
+h3 > a.anchor,
+#toctitle > a.anchor,
+.sidebarblock > .content > .title > a.anchor,
+h4 > a.anchor,
+h5 > a.anchor,
+h6 > a.anchor {
+  position: absolute;
+  z-index: 1001;
+  width: 1.5ex;
+  margin-left: -1.5ex;
+  display: block;
+  text-decoration: none !important;
+  visibility: hidden;
+  text-align: center;
+  font-weight: 400;
+}
+#content h1 > a.anchor::before,
+h2 > a.anchor::before,
+h3 > a.anchor::before,
+#toctitle > a.anchor::before,
+.sidebarblock > .content > .title > a.anchor::before,
+h4 > a.anchor::before,
+h5 > a.anchor::before,
+h6 > a.anchor::before {
+  content: '\00A7';
+  font-size: 0.85em;
+  display: block;
+  padding-top: 0.1em;
+}
+#content h1:hover > a.anchor,
+#content h1 > a.anchor:hover,
+h2:hover > a.anchor,
+h2 > a.anchor:hover,
+h3:hover > a.anchor,
+#toctitle:hover > a.anchor,
+.sidebarblock > .content > .title:hover > a.anchor,
+h3 > a.anchor:hover,
+#toctitle > a.anchor:hover,
+.sidebarblock > .content > .title > a.anchor:hover,
+h4:hover > a.anchor,
+h4 > a.anchor:hover,
+h5:hover > a.anchor,
+h5 > a.anchor:hover,
+h6:hover > a.anchor,
+h6 > a.anchor:hover {
+  visibility: visible;
+}
+#content h1 > a.link,
+h2 > a.link,
+h3 > a.link,
+#toctitle > a.link,
+.sidebarblock > .content > .title > a.link,
+h4 > a.link,
+h5 > a.link,
+h6 > a.link {
+  color: #ba3925;
+  text-decoration: none;
+}
+#content h1 > a.link:hover,
+h2 > a.link:hover,
+h3 > a.link:hover,
+#toctitle > a.link:hover,
+.sidebarblock > .content > .title > a.link:hover,
+h4 > a.link:hover,
+h5 > a.link:hover,
+h6 > a.link:hover {
+  color: #a53221;
+}
+.audioblock,
+.imageblock,
+.literalblock,
+.listingblock,
+.stemblock,
+.videoblock {
+  margin-bottom: 1.25em;
+}
+.admonitionblock td.content > .title,
+.audioblock > .title,
+.exampleblock > .title,
+.imageblock > .title,
+.listingblock > .title,
+.literalblock > .title,
+.stemblock > .title,
+.openblock > .title,
+.paragraph > .title,
+.quoteblock > .title,
+table.tableblock > .title,
+.verseblock > .title,
+.videoblock > .title,
+.dlist > .title,
+.olist > .title,
+.ulist > .title,
+.qlist > .title,
+.hdlist > .title {
+  text-rendering: optimizeLegibility;
+  text-align: left;
+  font-family: Gill Sans, Gill Sans MT, Calibri, sans-serif;
+  font-size: 1rem;
+  font-style: italic;
+  font-weight: 300;
+}
+table.tableblock > caption.title {
+  white-space: nowrap;
+  overflow: visible;
+  max-width: 0;
+}
+.paragraph.lead > p,
+#preamble > .sectionbody > .paragraph:first-of-type p {
+  color: rgba(0, 0, 0, 0.85);
+}
+table.tableblock #preamble > .sectionbody > .paragraph:first-of-type p {
+  font-size: inherit;
+}
+.admonitionblock > table {
+  border-collapse: separate;
+  border: 0;
+  background: none;
+  width: 100%;
+}
+.admonitionblock > table td.icon {
+  text-align: center;
+  width: 80px;
+}
+.admonitionblock > table td.icon img {
+  max-width: none;
+}
+.admonitionblock > table td.icon .title {
+  font-weight: bold;
+  /* font-family: 'Open Sans', 'DejaVu Sans', sans-serif; */
+  text-transform: uppercase;
+}
+.admonitionblock > table td.content {
+  padding-left: 1.125em;
+  padding-right: 1.25em;
+  border-left: 1px solid #ddddd8;
+  color: rgba(0, 0, 0, 0.6);
+}
+.admonitionblock > table td.content > :last-child > :last-child {
+  margin-bottom: 0;
+}
+.exampleblock > .content {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #e6e6e6;
+  margin-bottom: 1.25em;
+  padding: 1.25em;
+  background: #fff;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+.exampleblock > .content > :first-child {
+  margin-top: 0;
+}
+.exampleblock > .content > :last-child {
+  margin-bottom: 0;
+}
+.sidebarblock {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #e0e0dc;
+  margin-bottom: 1.25em;
+  padding: 1.25em;
+  background: #f8f8f7;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+.sidebarblock > :first-child {
+  margin-top: 0;
+}
+.sidebarblock > :last-child {
+  margin-bottom: 0;
+}
+.sidebarblock > .content > .title {
+  color: #7a2518;
+  margin-top: 0;
+  text-align: center;
+}
+.exampleblock > .content > :last-child > :last-child,
+.exampleblock > .content .olist > ol > li:last-child > :last-child,
+.exampleblock > .content .ulist > ul > li:last-child > :last-child,
+.exampleblock > .content .qlist > ol > li:last-child > :last-child,
+.sidebarblock > .content > :last-child > :last-child,
+.sidebarblock > .content .olist > ol > li:last-child > :last-child,
+.sidebarblock > .content .ulist > ul > li:last-child > :last-child,
+.sidebarblock > .content .qlist > ol > li:last-child > :last-child {
+  margin-bottom: 0;
+}
+.literalblock pre,
+.listingblock pre:not(.highlight),
+.listingblock pre[class='highlight'],
+.listingblock pre[class^='highlight '],
+.listingblock pre.CodeRay,
+.listingblock pre.prettyprint {
+  background: #f7f7f8;
+}
+.sidebarblock .literalblock pre,
+.sidebarblock .listingblock pre:not(.highlight),
+.sidebarblock .listingblock pre[class='highlight'],
+.sidebarblock .listingblock pre[class^='highlight '],
+.sidebarblock .listingblock pre.CodeRay,
+.sidebarblock .listingblock pre.prettyprint {
+  background: #f2f1f1;
+}
+.literalblock pre,
+.literalblock pre[class],
+.listingblock pre,
+.listingblock pre[class] {
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  word-wrap: break-word;
+  padding: 1em;
+  font-size: 0.8125em;
+}
+.literalblock pre.nowrap,
+.literalblock pre[class].nowrap,
+.listingblock pre.nowrap,
+.listingblock pre[class].nowrap {
+  overflow-x: auto;
+  white-space: pre;
+  word-wrap: normal;
+}
+@media only screen and (min-width: 768px) {
+  .literalblock pre,
+  .literalblock pre[class],
+  .listingblock pre,
+  .listingblock pre[class] {
+    font-size: 0.90625em;
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .literalblock pre,
+  .literalblock pre[class],
+  .listingblock pre,
+  .listingblock pre[class] {
+    font-size: 1em;
+  }
+}
+.literalblock.output pre {
+  color: #f7f7f8;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+.listingblock pre.highlightjs {
+  padding: 0;
+}
+.listingblock pre.highlightjs > code {
+  padding: 1em;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+.listingblock pre.prettyprint {
+  border-width: 0;
+}
+.listingblock > .content {
+  position: relative;
+}
+.listingblock code[data-lang]::before {
+  display: none;
+  content: attr(data-lang);
+  position: absolute;
+  font-size: 0.75em;
+  top: 0.425rem;
+  right: 0.5rem;
+  line-height: 1;
+  text-transform: uppercase;
+  color: #999;
+}
+.listingblock:hover code[data-lang]::before {
+  display: block;
+}
+.listingblock.terminal pre .command::before {
+  content: attr(data-prompt);
+  padding-right: 0.5em;
+  color: #999;
+}
+.listingblock.terminal pre .command:not([data-prompt])::before {
+  content: '$';
+}
+table.pyhltable {
+  border-collapse: separate;
+  border: 0;
+  margin-bottom: 0;
+  background: none;
+}
+table.pyhltable td {
+  vertical-align: top;
+  padding-top: 0;
+  padding-bottom: 0;
+  line-height: 1.45;
+}
+table.pyhltable td.code {
+  padding-left: 0.75em;
+  padding-right: 0;
+}
+pre.pygments .lineno,
+table.pyhltable td:not(.code) {
+  color: #999;
+  padding-left: 0;
+  padding-right: 0.5em;
+  border-right: 1px solid #ddddd8;
+}
+pre.pygments .lineno {
+  display: inline-block;
+  margin-right: 0.25em;
+}
+table.pyhltable .linenodiv {
+  background: none !important;
+  padding-right: 0 !important;
+}
+.quoteblock {
+  margin: 0 1em 1.25em 1.5em;
+  display: table;
+}
+.quoteblock > .title {
+  margin-left: -1.5em;
+  margin-bottom: 0.75em;
+}
+.quoteblock blockquote,
+.quoteblock blockquote p {
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 1.15rem;
+  line-height: 1.75;
+  word-spacing: 0.1em;
+  letter-spacing: 0;
+  font-style: italic;
+  text-align: justify;
+}
+.quoteblock blockquote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.quoteblock blockquote::before {
+  content: '\201c';
+  float: left;
+  font-size: 2.75em;
+  font-weight: bold;
+  line-height: 0.6em;
+  margin-left: -0.6em;
+  color: #7a2518;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+.quoteblock blockquote > .paragraph:last-child p {
+  margin-bottom: 0;
+}
+.quoteblock .attribution {
+  margin-top: 0.5em;
+  margin-right: 0.5ex;
+  text-align: right;
+}
+.quoteblock .quoteblock {
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0.5em 0;
+  border-left: 3px solid rgba(0, 0, 0, 0.6);
+}
+.quoteblock .quoteblock blockquote {
+  padding: 0 0 0 0.75em;
+}
+.quoteblock .quoteblock blockquote::before {
+  display: none;
+}
+.verseblock {
+  margin: 0 1em 1.25em 1em;
+}
+.verseblock pre {
+  /* font-family: 'Open Sans', 'DejaVu Sans', sans; */
+  font-size: 1.15rem;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 300;
+  text-rendering: optimizeLegibility;
+}
+.verseblock pre strong {
+  font-weight: 400;
+}
+.verseblock .attribution {
+  margin-top: 1.25rem;
+  margin-left: 0.5ex;
+}
+.quoteblock .attribution,
+.verseblock .attribution {
+  font-size: 0.9375em;
+  line-height: 1.45;
+  font-style: italic;
+}
+.quoteblock .attribution br,
+.verseblock .attribution br {
+  display: none;
+}
+.quoteblock .attribution cite,
+.verseblock .attribution cite {
+  display: block;
+  letter-spacing: -0.025em;
+  color: rgba(0, 0, 0, 0.6);
+}
+.quoteblock.abstract {
+  margin: 0 0 1.25em 0;
+  display: block;
+}
+.quoteblock.abstract blockquote,
+.quoteblock.abstract blockquote p {
+  text-align: left;
+  word-spacing: 0;
+}
+.quoteblock.abstract blockquote::before,
+.quoteblock.abstract blockquote p:first-of-type::before {
+  display: none;
+}
+table.tableblock {
+  max-width: 100%;
+  border-collapse: separate;
+}
+p.tableblock:last-child {
+  margin-bottom: 0;
+}
+td.tableblock > .content {
+  margin-bottom: -1.25em;
+}
+table.tableblock,
+th.tableblock,
+td.tableblock {
+  border: 0 solid #dedede;
+}
+table.grid-all > thead > tr > .tableblock,
+table.grid-all > tbody > tr > .tableblock {
+  border-width: 0 1px 1px 0;
+}
+table.grid-all > tfoot > tr > .tableblock {
+  border-width: 1px 1px 0 0;
+}
+table.grid-cols > * > tr > .tableblock {
+  border-width: 0 1px 0 0;
+}
+table.grid-rows > thead > tr > .tableblock,
+table.grid-rows > tbody > tr > .tableblock {
+  border-width: 0 0 1px 0;
+}
+table.grid-rows > tfoot > tr > .tableblock {
+  border-width: 1px 0 0 0;
+}
+table.grid-all > * > tr > .tableblock:last-child,
+table.grid-cols > * > tr > .tableblock:last-child {
+  border-right-width: 0;
+}
+table.grid-all > tbody > tr:last-child > .tableblock,
+table.grid-all > thead:last-child > tr > .tableblock,
+table.grid-rows > tbody > tr:last-child > .tableblock,
+table.grid-rows > thead:last-child > tr > .tableblock {
+  border-bottom-width: 0;
+}
+table.frame-all {
+  border-width: 1px;
+}
+table.frame-sides {
+  border-width: 0 1px;
+}
+table.frame-topbot {
+  border-width: 1px 0;
+}
+table.stripe-all tr,
+table.stripe-odd tr:nth-of-type(odd) {
+  background: #f8f8f7;
+}
+table.stripe-none tr,
+table.stripe-odd tr:nth-of-type(even) {
+  background: none;
+}
+th.halign-left,
+td.halign-left {
+  text-align: left;
+}
+th.halign-right,
+td.halign-right {
+  text-align: right;
+}
+th.halign-center,
+td.halign-center {
+  text-align: center;
+}
+th.valign-top,
+td.valign-top {
+  vertical-align: top;
+}
+th.valign-bottom,
+td.valign-bottom {
+  vertical-align: bottom;
+}
+th.valign-middle,
+td.valign-middle {
+  vertical-align: middle;
+}
+table thead th,
+table tfoot th {
+  font-weight: bold;
+}
+tbody tr th {
+  display: table-cell;
+  line-height: 1.6;
+  background: #f7f8f7;
+}
+tbody tr th,
+tbody tr th p,
+tfoot tr th,
+tfoot tr th p {
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: bold;
+}
+p.tableblock > code:only-child {
+  background: none;
+  padding: 0;
+}
+p.tableblock {
+  font-size: 1em;
+}
+td > div.verse {
+  white-space: pre;
+}
+ol {
+  margin-left: 1.75em;
+}
+ul li ol {
+  margin-left: 1.5em;
+}
+dl dd {
+  margin-left: 1.125em;
+}
+dl dd:last-child,
+dl dd:last-child > :last-child {
+  margin-bottom: 0;
+}
+ol > li p,
+ul > li p,
+ul dd,
+ol dd,
+.olist .olist,
+.ulist .ulist,
+.ulist .olist,
+.olist .ulist {
+  margin-bottom: 0.625em;
+}
+ul.checklist,
+ul.none,
+ol.none,
+ul.no-bullet,
+ol.no-bullet,
+ol.unnumbered,
+ul.unstyled,
+ol.unstyled {
+  list-style-type: none;
+}
+ul.no-bullet,
+ol.no-bullet,
+ol.unnumbered {
+  margin-left: 0.625em;
+}
+ul.unstyled,
+ol.unstyled {
+  margin-left: 0;
+}
+ul.checklist {
+  margin-left: 0.625em;
+}
+ul.checklist li > p:first-child > .fa-square-o:first-child,
+ul.checklist li > p:first-child > .fa-check-square-o:first-child {
+  width: 1.25em;
+  font-size: 0.8em;
+  position: relative;
+  bottom: 0.125em;
+}
+ul.checklist li > p:first-child > input[type='checkbox']:first-child {
+  margin-right: 0.25em;
+}
+ul.inline {
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: flex;
+  -ms-flex-flow: row wrap;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+  list-style: none;
+  margin: 0 0 0.625em -1.25em;
+}
+ul.inline > li {
+  margin-left: 1.25em;
+}
+.unstyled dl dt {
+  font-weight: 400;
+  font-style: normal;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.decimal {
+  list-style-type: decimal-leading-zero;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+ol.lowergreek {
+  list-style-type: lower-greek;
+}
+.hdlist > table,
+.colist > table {
+  border: 0;
+  background: none;
+}
+.hdlist > table > tbody > tr,
+.colist > table > tbody > tr {
+  background: none;
+}
+td.hdlist1,
+td.hdlist2 {
+  vertical-align: top;
+  padding: 0 0.625em;
+}
+td.hdlist1 {
+  font-weight: bold;
+  padding-bottom: 1.25em;
+}
+.literalblock + .colist,
+.listingblock + .colist {
+  margin-top: -0.5em;
+}
+.colist td:not([class]):first-child {
+  padding: 0.4em 0.75em 0 0.75em;
+  line-height: 1;
+  vertical-align: top;
+}
+.colist td:not([class]):first-child img {
+  max-width: none;
+}
+.colist td:not([class]):last-child {
+  padding: 0.25em 0;
+}
+.thumb,
+.th {
+  line-height: 0;
+  display: inline-block;
+  border: solid 4px #fff;
+  -webkit-box-shadow: 0 0 0 1px #ddd;
+  box-shadow: 0 0 0 1px #ddd;
+}
+.imageblock.left,
+.imageblock[style*='float: left'] {
+  margin: 0.25em 0.625em 1.25em 0;
+}
+.imageblock.right,
+.imageblock[style*='float: right'] {
+  margin: 0.25em 0 1.25em 0.625em;
+}
+.imageblock > .title {
+  margin-bottom: 0;
+}
+.imageblock.thumb,
+.imageblock.th {
+  border-width: 6px;
+}
+.imageblock.thumb > .title,
+.imageblock.th > .title {
+  padding: 0 0.125em;
+}
+.image.left,
+.image.right {
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+  display: inline-block;
+  line-height: 0;
+}
+.image.left {
+  margin-right: 0.625em;
+}
+.image.right {
+  margin-left: 0.625em;
+}
+a.image {
+  text-decoration: none;
+  display: inline-block;
+}
+a.image object {
+  pointer-events: none;
+}
+sup.footnote,
+sup.footnoteref {
+  font-size: 0.875em;
+  position: static;
+  vertical-align: super;
+}
+sup.footnote a,
+sup.footnoteref a {
+  text-decoration: none;
+}
+sup.footnote a:active,
+sup.footnoteref a:active {
+  text-decoration: underline;
+}
+#footnotes {
+  padding-top: 0.75em;
+  padding-bottom: 0.75em;
+  margin-bottom: 0.625em;
+}
+#footnotes hr {
+  width: 20%;
+  min-width: 6.25em;
+  margin: -0.25em 0 0.75em 0;
+  border-width: 1px 0 0 0;
+}
+#footnotes .footnote {
+  padding: 0 0.375em 0 0.225em;
+  line-height: 1.3334;
+  font-size: 0.875em;
+  margin-left: 1.2em;
+  margin-bottom: 0.2em;
+}
+#footnotes .footnote a:first-of-type {
+  font-weight: bold;
+  text-decoration: none;
+  margin-left: -1.05em;
+}
+#footnotes .footnote:last-of-type {
+  margin-bottom: 0;
+}
+#content #footnotes {
+  margin-top: -0.625em;
+  margin-bottom: 0;
+  padding: 0.75em 0;
+}
+.gist .file-data > table {
+  border: 0;
+  background: #fff;
+  width: 100%;
+  margin-bottom: 0;
+}
+.gist .file-data > table td.line-data {
+  width: 99%;
+}
+div.unbreakable {
+  page-break-inside: avoid;
+}
+.big {
+  font-size: larger;
+}
+.small {
+  font-size: smaller;
+}
+.underline {
+  text-decoration: underline;
+}
+.overline {
+  text-decoration: overline;
+}
+.line-through {
+  text-decoration: line-through;
+}
+.aqua {
+  color: #00bfbf;
+}
+.aqua-background {
+  background-color: #00fafa;
+}
+.black {
+  color: #000;
+}
+.black-background {
+  background-color: #000;
+}
+.blue {
+  color: #0000bf;
+}
+.blue-background {
+  background-color: #0000fa;
+}
+.fuchsia {
+  color: #bf00bf;
+}
+.fuchsia-background {
+  background-color: #fa00fa;
+}
+.gray {
+  color: #606060;
+}
+.gray-background {
+  background-color: #7d7d7d;
+}
+.green {
+  color: #006000;
+}
+.green-background {
+  background-color: #007d00;
+}
+.lime {
+  color: #00bf00;
+}
+.lime-background {
+  background-color: #00fa00;
+}
+.maroon {
+  color: #600000;
+}
+.maroon-background {
+  background-color: #7d0000;
+}
+.navy {
+  color: #000060;
+}
+.navy-background {
+  background-color: #00007d;
+}
+.olive {
+  color: #606000;
+}
+.olive-background {
+  background-color: #7d7d00;
+}
+.purple {
+  color: #600060;
+}
+.purple-background {
+  background-color: #7d007d;
+}
+.red {
+  color: #bf0000;
+}
+.red-background {
+  background-color: #fa0000;
+}
+.silver {
+  color: #909090;
+}
+.silver-background {
+  background-color: #bcbcbc;
+}
+.teal {
+  color: #006060;
+}
+.teal-background {
+  background-color: #007d7d;
+}
+.white {
+  color: #bfbfbf;
+}
+.white-background {
+  background-color: #fafafa;
+}
+.yellow {
+  color: #bfbf00;
+}
+.yellow-background {
+  background-color: #fafa00;
+}
+span.icon > .fa {
+  cursor: default;
+}
+a span.icon > .fa {
+  cursor: inherit;
+}
+.admonitionblock td.icon [class^='fa icon-'] {
+  font-size: 2.5em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  cursor: default;
+}
+.admonitionblock td.icon .icon-note::before {
+  content: '\f05a';
+  color: #19407c;
+}
+.admonitionblock td.icon .icon-tip::before {
+  content: '\f0eb';
+  text-shadow: 1px 1px 2px rgba(155, 155, 0, 0.8);
+  color: #111;
+}
+.admonitionblock td.icon .icon-warning::before {
+  content: '\f071';
+  color: #bf6900;
+}
+.admonitionblock td.icon .icon-caution::before {
+  content: '\f06d';
+  color: #bf3400;
+}
+.admonitionblock td.icon .icon-important::before {
+  content: '\f06a';
+  color: #bf0000;
+}
+.conum[data-value] {
+  display: inline-block;
+  color: #fff !important;
+  background-color: rgba(0, 0, 0, 0.8);
+  -webkit-border-radius: 100px;
+  border-radius: 100px;
+  text-align: center;
+  font-size: 0.75em;
+  width: 1.67em;
+  height: 1.67em;
+  line-height: 1.67em;
+  /* font-family: 'Open Sans', 'DejaVu Sans', sans-serif; */
+  font-style: normal;
+  font-weight: bold;
+}
+.conum[data-value] * {
+  color: #fff !important;
+}
+.conum[data-value] + b {
+  display: none;
+}
+.conum[data-value]::after {
+  content: attr(data-value);
+}
+pre .conum[data-value] {
+  position: relative;
+  top: -0.125em;
+}
+b.conum * {
+  color: inherit !important;
+}
+.conum:not([data-value]):empty {
+  display: none;
+}
+dt,
+th.tableblock,
+td.content,
+div.footnote {
+  text-rendering: optimizeLegibility;
+}
+h1,
+h2,
+p,
+td.content,
+span.alt {
+  letter-spacing: -0.01em;
+}
+p strong,
+td.content strong,
+div.footnote strong {
+  letter-spacing: -0.005em;
+}
+p,
+blockquote,
+dt,
+td.content,
+span.alt {
+  font-size: 1.0625rem;
+}
+p {
+  margin-bottom: 1.25rem;
+}
+.sidebarblock p,
+.sidebarblock dt,
+.sidebarblock td.content,
+p.tableblock {
+  font-size: 1em;
+}
+.exampleblock > .content {
+  background-color: #fffef7;
+  border-color: #e0e0dc;
+  -webkit-box-shadow: 0 1px 4px #e0e0dc;
+  box-shadow: 0 1px 4px #e0e0dc;
+}
+.print-only {
+  display: none !important;
+}
+@page {
+  margin: 1.25cm 0.75cm;
+}
+@media print {
+  * {
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+  html {
+    font-size: 80%;
+  }
+  a {
+    color: inherit !important;
+    text-decoration: underline !important;
+  }
+  a.bare,
+  a[href^='#'],
+  a[href^='mailto:'] {
+    text-decoration: none !important;
+  }
+  a[href^='http:']:not(.bare)::after,
+  a[href^='https:']:not(.bare)::after {
+    content: '(' attr(href) ')';
+    display: inline-block;
+    font-size: 0.875em;
+    padding-left: 0.25em;
+  }
+  abbr[title]::after {
+    content: ' (' attr(title) ')';
+  }
+  pre,
+  blockquote,
+  tr,
+  img,
+  object,
+  svg {
+    page-break-inside: avoid;
+  }
+  thead {
+    display: table-header-group;
+  }
+  svg {
+    max-width: 100%;
+  }
+  p,
+  blockquote,
+  dt,
+  td.content {
+    font-size: 1em;
+    orphans: 3;
+    widows: 3;
+  }
+  h2,
+  h3,
+  #toctitle,
+  .sidebarblock > .content > .title {
+    page-break-after: avoid;
+  }
+  #toc,
+  .sidebarblock,
+  .exampleblock > .content {
+    background: none !important;
+  }
+  #toc {
+    border-bottom: 1px solid #ddddd8 !important;
+    padding-bottom: 0 !important;
+  }
+  .sect1 {
+    padding-bottom: 0 !important;
+  }
+  .sect1 + .sect1 {
+    border: 0 !important;
+  }
+  #header > h1:first-child {
+    margin-top: 1.25rem;
+  }
+  body.book #header {
+    text-align: center;
+  }
+  body.book #header > h1:first-child {
+    border: 0 !important;
+    margin: 2.5em 0 1em 0;
+  }
+  body.book #header .details {
+    border: 0 !important;
+    display: block;
+    padding: 0 !important;
+  }
+  body.book #header .details span:first-child {
+    margin-left: 0 !important;
+  }
+  body.book #header .details br {
+    display: block;
+  }
+  body.book #header .details br + span::before {
+    content: none !important;
+  }
+  body.book #toc {
+    border: 0 !important;
+    text-align: left !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  body.book #toc,
+  body.book #preamble,
+  body.book h1.sect0,
+  body.book .sect1 > h2 {
+    page-break-before: always;
+  }
+  .listingblock code[data-lang]::before {
+    display: block;
+  }
+  #footer {
+    background: none !important;
+    padding: 0 0.9375em;
+  }
+  #footer-text {
+    color: rgba(0, 0, 0, 0.6) !important;
+    font-size: 0.9em;
+  }
+  .hide-on-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .hide-for-print {
+    display: none !important;
+  }
+  .show-for-print {
+    display: inherit !important;
+  }
+}
+
+.admonitionblock td.content > .title, .audioblock > .title, .exampleblock > .title, .imageblock > .title, .listingblock > .title, .literalblock > .title, .stemblock > .title, .openblock > .title, .paragraph > .title, .quoteblock > .title, table.tableblock > .title, .verseblock > .title, .videoblock > .title, .dlist > .title, .olist > .title, .ulist > .title, .qlist > .title, .hdlist > .title, #toctitle {
+  font-style: normal;
+  font-weight: 400;
+}
+
+.admonitionblock td.content > .title, .audioblock > .title, .exampleblock > .title, .imageblock > .title, .listingblock > .title, .literalblock > .title, .stemblock > .title, .openblock > .title, .paragraph > .title, .quoteblock > .title, table.tableblock > .title, .verseblock > .title, .videoblock > .title, .dlist > .title, .olist > .title, .ulist > .title, .qlist > .title, .hdlist > .title {
+  font-size: 1.0625rem;
+}
+
+a {
+  white-space: nowrap;
+}
+.RemarquePreTitre {
+  font-style: normal;
+  font-weight: bold;
+}
+  .RemarquePreTitre::after {
+    content: "•";
+    padding-left: 5px;
+  }
+.admonitionblock {
+}
+.admonitionblock > table {
+  border: 1px solid #ddddd8;
+  box-shadow: 0 0 8px rgba(0,0,0,.1);
+  margin: 1.5em 0;
+  padding: 1em;
+}
+.icon .title {
+  font-size: 2em;
+}
+
+.colist ol {
+  margin-left: 1em;    /* aligns with the listing edge */
+  font-weight: bold;   /* makes it stand out more */
+}
+.listingblock pre:not(.hljs),
+.language-bash.hljs {
+  background: #323232;
+  color: wheat;
+}
+.language-bash.hljs .hljs-built_in,
+.language-bash.hljs .hljs-builtin-name {
+  color: white;
+}
+.language-bash.hljs .hljs-string {
+  color: lightgreen;
+}
+.language-bash.hljs .hljs-variable {
+  color: lightskyblue;
+}
+.keyseq {
+  font-weight: normal;
+  white-space: nowrap;
+}
+.language-bash.hljs .keyseq {
+  color: white;
+}
+.language-bash.hljs kbd {
+  background: transparent;
+  box-shadow: none;
+  color: white;
+  font-size: 0.8em;
+  font-weight: bold;
+  padding: 0.1em 0.4em;
+}
+
+.listingblock pre.highlightjs > code {
+  border-left: 4px solid #7a2518;
+}
+.listingblock pre.highlightjs > code.language-bash {
+  border-color: #323232;
+}
+
+</style>
+<style type="text/css">[data-interactive-runtime="loaded"] .interactive--javascript code[data-lang]:before {
+  display: block;
+  color: #00c72b;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+  [lang="en"] [data-interactive-runtime="loaded"] .interactive--javascript code[data-lang]:before {
+    content: "▶ run code";
+  }
+  [lang="fr"] [data-interactive-runtime="loaded"] .interactive--javascript code[data-lang]:before {
+    content: "▶ voir le résultat";
+  }
+  .interactive--javascript code[data-label]:before {
+    content: attr(data-label);
+  }
+
+.interactive iframe {
+  position: absolute;
+  visibility: hidden;
+}
+
+.interactive.status--loaded iframe {
+  position: inherit;
+  visibility: visible;
+}
+
+.interactive.status--loading {
+  opacity: .5;
+}
+</style>
+<script>
+(function(d){
+  document.addEventListener('DOMContentLoaded', function(){
+    const script = d.createElement('script');
+    script.src = 'https://embed.runkit.com/';
+    script.async = true;
+    script.onload = function(){
+      function makeListingInteractive (element){
+  if (element.classList.contains('interactive--installed') || element.classList.contains('status--loading')) {
+    return;
+  }
+
+  const code = element.querySelector('code');
+  const nodeVersion = /interactive--runtime--node-([^\s]+)/.exec(element.className)[1];
+  const isEndpoint = element.classList.contains('interactive--endpoint');
+  const mode = isEndpoint ? 'endpoint' : null;
+  let preamble = '';
+
+  const source = code
+    .textContent
+    .replace(/\(\d+\)$/gm, '')
+    .replace(/^["']?use strict["'][; ]*\n/, '');
+
+  if (isEndpoint) {
+    preamble = `process.nextTick(() => {
+      if (typeof module.exports === 'function') {
+        exports.endpoint = module.exports;
+      }
+      else if (typeof server !== 'undefined') {
+        exports.endpoint = server.listeners("request").pop();
+      }
+});`
+  }
+
+  element.classList.add('status--loading');
+
+  // eslint-disable-next-line no-undef
+  RunKit.createNotebook({
+    nodeVersion,
+    element,
+    source,
+    mode,
+    preamble,
+    onLoad: function(ntbk) {
+      element.classList.add('interactive--installed');
+      element.classList.remove('status--loading');
+      element.classList.add('status--loaded');
+      code.parentNode.setAttribute('hidden', true);
+
+      ntbk.evaluate();
+    }
+  });
+}
+function installEvents () {
+  function getParent(el, condition) {
+    let parent = el;
+
+    while(parent = parent.parentNode) {
+      if (condition(parent)) {
+        return parent;
+      }
+    }
+  }
+
+  function hasClass(className) {
+    return function check(el) {
+      return el.classList.contains(className);
+    }
+  }
+
+  document.querySelector('body').addEventListener('click', function(el) {
+    if (el.target.classList.contains('language-javascript') || el.target.classList.contains('language-js')) {
+      const parentNode = getParent(
+        el.target,
+        hasClass('interactive--javascript')
+      );
+
+      makeListingInteractive(parentNode);
+    }
+  });
+}
+      installEvents();
+      document.body.dataset.interactiveRuntime = 'loaded';
+    };
+    document.body.appendChild(script);
+  });
+})(document);</script>
+<style type="text/css">
+.listingblock [data-bash-subs]::before {
+  content: attr(data-bash-subs) " ";
+  opacity: .5; }
+
+.listingblock [data-bash-conum]::before {
+  content: "(" attr(data-bash-conum) ")";
+  font-weight: bold;
+  opacity: .7;
+}</style>
+<script>
+(function(d){
+  d.addEventListener('DOMContentLoaded', function(){
+    const script = d.createElement('script');
+    script.src = 'https://wzrd.in/standalone/menuspy';
+    script.async = true;
+    script.onload = () => new menuspy(document.querySelector('#toc'), {enableLocationHash: false});
+    d.body.appendChild(script);
+  });
+})(document);</script>
+<style type="text/css">
+#toc li.active > a[href^="#"] {
+  background: #ffc;
+  font-weight: bold;
+}
+#toc li.active > a[href^="#"]::before {
+  content: "▶ ";
+  display: inline-block;
+  position: absolute;
+  margin-left: -1.2em;
+  font-size: .8em;
+  margin-top: 3px;
+}
+</style>
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<h1>Créer une application web</h1>
+<div class="details">
+<span id="revdate">2018-07-12</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table des matières</div>
+<ul class="sectlevel1">
+<li><a href="#composer_son_application_web">1. Composer son application web</a>
+<ul class="sectlevel2">
+<li><a href="#server">1.1. Démarrer un serveur HTTP</a></li>
+<li><a href="#path">1.2. Répondre à un chemin (<em>routing</em>)</a></li>
+<li><a href="#static">1.3. Répondre avec des fichiers statiques</a></li>
+<li><a href="#arguments">1.4. Réagir aux arguments d&#8217;URL</a></li>
+<li><a href="#post">1.5. Interpréter un corps de message (<code>POST</code>, <code>PUT</code>)</a></li>
+<li><a href="#upload">1.6. Uploader des fichiers</a></li>
+<li><a href="#cookies">1.7. Garder un lien avec les cookies</a></li>
+<li><a href="#templating">1.8. Modulariser les gabarits de présentation</a></li>
+<li><a href="#dev">1.9. Pendant le développement : relancer le serveur automatiquement</a></li>
+</ul>
+</li>
+<li><a href="#express">2. Organiser une application avec le <em>framework</em> express</a>
+<ul class="sectlevel2">
+<li><a href="#middleware">2.1. Greffer des extensions</a></li>
+<li><a href="#views">2.2. Brancher les gabarits de présentation</a></li>
+<li><a href="#frontend">2.3. Intégrer les ressources front-end (CSS, JavaScript)</a></li>
+<li><a href="#security">2.4. Protéger l&#8217;application</a></li>
+<li><a href="#database">2.5. Brancher une base de données</a>
+<ul class="sectlevel3">
+<li><a href="#quelle_base_de_données_choisir">2.5.1. Quelle base de données choisir ?</a></li>
+</ul>
+</li>
+<li><a href="#sessions">2.6. Sessions utilisateur</a></li>
+<li><a href="#logs">2.7. Tracer les actions</a></li>
+</ul>
+</li>
+<li><a href="#tests">3. Vers un code réutilisable et testable</a>
+<ul class="sectlevel2">
+<li><a href="#modulariser_le_code_des_routes">3.1. Modulariser le code des routes</a></li>
+<li><a href="#tester_le_code_indépendamment_du_framework">3.2. Tester le code indépendamment du framework</a></li>
+<li><a href="#tester_les_aspects_cruciaux_du_front_end">3.3. Tester les aspects cruciaux du front-end</a></li>
+<li><a href="#déployer_automatiquement">3.4. Déployer automatiquement</a></li>
+</ul>
+</li>
+<li><a href="#advanced">4. Pour aller plus loin</a>
+<ul class="sectlevel2">
+<li><a href="#advanced.server">4.1. Pourquoi lancer un serveur ?</a></li>
+<li><a href="#http">4.2. Comprendre le modèle HTTP</a></li>
+<li><a href="#authentication">4.3. Authentifier des utilisateurs</a></li>
+<li><a href="#api">4.4. API REST : l&#8217;application web orientée données</a></li>
+<li><a href="#job-queue">4.5. Déléguer le travail aux files d&#8217;attente</a></li>
+<li><a href="#lambda">4.6. Une application minimaliste avec les Lambda</a></li>
+<li><a href="#https">4.7. Et HTTPS dans tout ça ?</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">5. Conclusion</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>TBD.</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="ulist">
+<div class="title">Sommaire</div>
+<ul>
+<li>
+<p>TBD.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="quoteblock abstract">
+<blockquote>
+<div class="paragraph">
+<p>TBD.</p>
+</div>
+</blockquote>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">💬</div>
+</td>
+<td class="content">
+<div class="title"><span class="RemarquePreTitre">Remarque</span> Versions de Node et npm</div>
+<div class="paragraph">
+<p>Le contenu de ce chapitre utilise les versions <strong>Node v10</strong> et <strong>npm v6</strong>.
+Ce sont les versions stables recommandées en 2018.
+J&#8217;explique comment les installer au <a href="../chapter-02/index.html#install">chapitre 2</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Une application web est une <strong>construction applicative qui est à l&#8217;écoute</strong>
+de connexions réseaux initiées par un client.
+Elle est structurée autour de la lecture d&#8217;une requête entrante (lecture)
+et l&#8217;émission d&#8217;une réponse sortante (écriture).
+Chaque <strong>requête porte en elle une intention</strong>&#160;— un chemin d&#8217;accès, une préférence
+de format, des éléments d&#8217;identification&#160;— et implique une réponse en retour
+—&#160;des données et des éléments pour les contextualiser.</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;ingéniérie d&#8217;une application web consiste à comprendre les requêtes entrantes
+et à construire une réponse appropriée à chaque fois, le plus rapidement possible.</p>
+</div>
+<div class="paragraph">
+<p>Ce chapitre s&#8217;inscrit dans la continuité du
+<a href="../chapter-04/index.html#http">module <code>http</code></a> (re)découvert au cours du
+<a href="../chapter-04/index.html">chapitre 4</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">💬</div>
+</td>
+<td class="content">
+<div class="title"><span class="RemarquePreTitre">Documentation</span> Entêtes HTTP</div>
+<div class="paragraph">
+<p>Ce chapitre fait souvent référence à des entêtes HTTP.
+La documentation <em>MDN web docs</em> (<span class="URL"><a href="https://developer.mozilla.org/fr/docs/Web/HTTP/Headers" class="bare">developer.mozilla.org/fr/docs/Web/HTTP/Headers</a></span>)
+les liste toutes, avec le détail de leurs valeurs possibles.</p>
+</div>
+<div class="paragraph">
+<p>C&#8217;est un onglet intéressant à ouvrir en parallèle de cette lecture
+—&#160;je l&#8217;ai ouvert en permanence pour écrire ce chapitre.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="composer_son_application_web">1. Composer son application web</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Dans cette première section, nous allons nous focaliser sur la construction
+d&#8217;une application web avec une approche modulaire.
+Nous partirons du concept de requête et de réponse
+Petit à petit, nous allons greffer des modules pour comprendre et
+donner du sens à leur contenu respectif.</p>
+</div>
+<div class="paragraph">
+<p>Le <em>protocole HTTP</em> est le dialecte informatique utilisé et compris pour exprimer
+les requêtes (émises par un client) et les réponses (émises par un serveur).
+Les navigateurs web sont des clients tandis que notre application Node est un serveur.</p>
+</div>
+<div class="paragraph">
+<p>Le logiciel <em>curl</em> (<span class="URL"><a href="https://curl.haxx.se" class="bare">curl.haxx.se</a></span>) est un client en ligne de commande.
+Il est souvent installé par défaut sur les distributions Linux, sur macOS et
+à partir de Windows 7&#160;— via le terminal <em>PowerShell</em>.</p>
+</div>
+<div class="paragraph">
+<p>Utilisons <em>curl</em> pour observer le contenu d&#8217;une requête et sa réponse.</p>
+</div>
+<div class="listingblock">
+<div class="title">Exemple de requête HTTP vers le site <span class="URL">perdu.com</span>.</div>
+<div class="content">
+<pre><span data-bash-subs="$"></span>curl -v http://perdu.com   <span data-bash-conum="1"></span>
+GET / HTTP/1.1               <span data-bash-conum="2"></span>
+Host: perdu.com              <span data-bash-conum="3"></span>
+User-Agent: curl/7.54.0
+Accept: */*</pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>Exécution de la requête.</p>
+</li>
+<li>
+<p>Expression de la méthode, du chemin d&#8217;accès demandé et du protocole de discussion employé&#160;— ici, le protocole HTTP dans sa version <code>1.1</code>.</p>
+</li>
+<li>
+<p>Entête de requête.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Une entête est exprimée sous la forme <code>Clé: Valeur</code>.
+Chaque entête précise un élément de contexte.
+Certaines entêtes influencent plus que d&#8217;autres la réponse du serveur, si
+celui-ci la comprend.</p>
+</div>
+<div class="paragraph">
+<p>Voyons maintenant la réponse.</p>
+</div>
+<div class="listingblock">
+<div class="title">Exemple de réponse HTTP transmise en retour.</div>
+<div class="content">
+<pre>HTTP/1.1 200 OK                                        <span data-bash-conum="1"></span>
+Date: Thu, 28 Jun 2018 19:02:27 GMT                    <span data-bash-conum="2"></span>
+Server: Apache
+Last-Modified: Thu, 02 Jun 2016 06:01:08 GMT
+ETag: "cc-5344555136fe9"
+Accept-Ranges: bytes
+Content-Length: 204
+Vary: Accept-Encoding
+Content-Type: text/html                                <span data-bash-conum="3"></span>
+
+&lt;html>&lt;head>&lt;title>Vous Etes Perdu ?&lt;/title> …&lt;/html>  <span data-bash-conum="4"></span></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>Expression du statut de la réponse avec un code numérique et une version intelligible.</p>
+</li>
+<li>
+<p>Entête de réponse.</p>
+</li>
+<li>
+<p>Entête de réponse&#160;— celle-ci indique au client comment interpréter le corps du message.</p>
+</li>
+<li>
+<p>Corps du message.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>La réponse dispose elle aussi d&#8217;entêtes.
+Cette fois, elles guident le client dans son interprétation du résultat.
+Le corps du message est séparé par une ligne vide.
+C&#8217;est la partie visible de la réponse dans un navigateur web, c&#8217;est le contenu
+qui s&#8217;affiche sous nos yeux.</p>
+</div>
+<div class="paragraph">
+<p>Dans la prochaine section, nous allons visualiser ces mêmes informations
+à partir d&#8217;un serveur HTTP que nous allons créer par nous-même.
+Nous retracerons plus en détail l&#8217;odyssée d&#8217;une requête HTTP dans la section
+<a href="#http">Comprendre le modèle HTTP</a>, en fin de chapitre.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">💡</div>
+</td>
+<td class="content">
+<div class="title"><span class="RemarquePreTitre">Pratique</span> Jouer avec les exemples dans un terminal</div>
+<div class="paragraph">
+<p>Les exemples titrés d&#8217;un nom de fichier peuvent être installés sur votre ordinateur.
+Exécutez-les dans un terminal et amusez-vous à les modifier en parallèle de
+votre lecture pour voir ce qui change.</p>
+</div>
+<div class="listingblock">
+<div class="title">Installation des exemples via le module npm <code>nodebook</code>.</div>
+<div class="content">
+<pre><span data-bash-subs="$"></span>npm install --global nodebook
+<span data-bash-subs="$"></span>nodebook install chapter-07
+<span data-bash-subs="$"></span>cd $(nodebook dir chapter-07)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>La commande suivante devrait afficher un résultat qui confirme que vous êtes
+au bon endroit&#160;:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre><span data-bash-subs="$"></span>node hello.js</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Suivez à nouveau les installations d&#8217;instruction pour rétablir les exemples
+dans leur état initial.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="server">1.1. Démarrer un serveur HTTP</h3>
+<div class="paragraph">
+<p>Nous l&#8217;avons vu juste avant&#160;: une requête HTTP envoyée vers un hôte
+renvoie une réponse.
+Cet hôte doit au préalable avoir installé et démarré un serveur HTTP qui
+écoute ces demandes.</p>
+</div>
+<div class="paragraph">
+<p>Le script d&#8217;exemple <code>server/start.js</code> répond à ce besoin.
+Une fois démarré, il est joignable à l&#8217;adresse <code><a href="http://localhost:4000" class="bare">localhost:4000</a></code>.
+Il affichera alors les entêtes des requêtes et de leur réponse&#160;:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre><span data-bash-subs="$"></span>node server/start.js</pre>
+</div>
+</div>
+<div class="listingblock interactive interactive--javascript interactive--runtime--node-v10 interactive--endpoint">
+<div class="title">server/start.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const {createServer} = require('http');
+
+const server = createServer();
+
+server.on('request', (request, response) =&gt; {
+  response.setHeader('Content-Type', 'text/html');  <b class="conum">(1)</b>
+  response.end('&lt;h1&gt;Hello World&lt;/h1&gt;');
+
+  console.log(request.headers);                     <b class="conum">(2)</b>
+  console.log(response.getHeaders());               <b class="conum">(3)</b>
+});
+
+server.listen(4000);</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>Comme nous retournons du HTML au client, nous explicitons le type de contenu retourné en réponse.</p>
+</li>
+<li>
+<p>Affiche les entêtes de la requête reçue par le serveur&#160;— le contenu varie selon le client utilisé.</p>
+</li>
+<li>
+<p>Affiche les entêtes de la réponse&#160;— en l&#8217;occurence <code>{ 'content-type': 'text/html' }</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Nous avons composé la fondation minimum pour créer une application web
+en étant en mesure d&#8217;accepter des requêtes et de répondre, quelque chose
+d&#8217;arbitraire certes mais quelque chose qui est compris par un navigateur web.</p>
+</div>
+<div class="paragraph">
+<p><strong>Pourquoi avoir démarré le serveur sur le port 4000</strong> dans l&#8217;exemple précédent&#160;?
+C&#8217;est un choix arbitraire de ma part&#160;: nous pouvons démarrer un serveur HTTP
+sur n&#8217;importe quel port tant qu&#8217;il est libre et supérieur ou égal à 1000.
+Quand on cherche à se connecter à une adresse comme <code><a href="http://localhost" class="bare">localhost</a></code> (HTTP)
+ou <code><a href="https://localhost" class="bare">localhost</a></code> (HTTPS), la valeur du port vaut implicitement 80 et 443,
+respectivement.</p>
+</div>
+<div class="paragraph">
+<p>Le module npm <em>get-port</em> (<span class="URL"><a href="https://npmjs.com/get-port" class="bare">npmjs.com/get-port</a></span>) retourne
+un numéro de port parmi ceux disponibles sur le système d&#8217;exploitation.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre><span data-bash-subs="$"></span>node server/port.js
+http://localhost:51765</pre>
+</div>
+</div>
+<div class="listingblock interactive interactive--javascript interactive--runtime--node-v10">
+<div class="title">server/port.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const {createServer} = require('http');
+const getPort = require('get-port');
+const server = createServer();
+
+getPort({ port: 4000 }).then(port =&gt; {      <b class="conum">(1)</b>
+  console.log(`http://localhost:${port}`);  <b class="conum">(2)</b>
+  server.listen(port);                      <b class="conum">(3)</b>
+});</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>Exprime une préférence pour retourner le port 4000 s&#8217;il est disponible.</p>
+</li>
+<li>
+<p>Affiche <code><a href="http://localhost:4000" class="bare">localhost:4000</a></code> si le port est disponible, sinon un autre nombre s&#8217;affichera à la place.</p>
+</li>
+<li>
+<p>Le serveur se met à l&#8217;écoute sur ce port.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Pour vous en rendre compte, démarrez le script <code>server/start.js</code> pour utiliser
+le port 4000 et démarrez ensuite <code>server/port.js</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="path">1.2. Répondre à un chemin (<em>routing</em>)</h3>
+<div class="paragraph">
+<p>Nous avons vu qu&#8217;une URL est un identifiant qui se décompose en plusieurs
+parties grâce au <a href="../chapter-04/index.html#url">module <code>url</code></a>
+(cf. <a href="../chapter-04/index.html">chapitre 4</a>).
+Une de ces parties est le <em>chemin d&#8217;accès</em> à une ressource.<br>
+Par exemple, le chemin de l&#8217;URL <code><a href="http://localhost:4000/coucou" class="bare">localhost:4000/coucou</a></code> est <code>/coucou</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre><span data-bash-subs="$"></span>node path/request-url.js</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">path/request-url.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const {createServer} = require('http');
+const server = createServer().listen(4000);
+
+server.on('request', (request, response) =&gt; {
+  if (request.url === '/') {                        <b class="conum">(1)</b>
+    response.end('&lt;a href="/hello"&gt;clique-moi&lt;/a&gt;');
+  }
+  else if (request.url === '/coucou') {             <b class="conum">(2)</b>
+    response.end('&lt;a href="/"&gt;coucou !&lt;/a&gt;');
+  }
+});</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>Affiche un message spécifique au chemin <code>/</code>.</p>
+</li>
+<li>
+<p>Affiche un autre message spécifique au chemin <code>/coucou</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Les deux seules ressources mises à disposition sur <code><a href="http://localhost:4000" class="bare">localhost:4000</a></code>
+sont accessibles avec les chemins <code>/</code> et <code>/coucou</code>.
+Tout autre chemin n&#8217;aboutira pas.</p>
+</div>
+<div class="paragraph">
+<p>C&#8217;est d&#8217;ailleurs un problème puisqu&#8217;en réalité, nous n&#8217;envoyons pas de réponse
+pour un chemin inconnu.
+Et c&#8217;est à nous de gérer ce cas de figure&#160;:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre><span data-bash-subs="$"></span>node path/404.js</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">path/404.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const {createServer} = require('http');
+const server = createServer().listen(4000);
+
+server.on('request', (request, response) =&gt; {
+  if (request.url === '/') {                        <b class="conum">(1)</b>
+    response.end('&lt;a href="/hello"&gt;clique-moi&lt;/a&gt;');
+  }
+  else {
+    response.statusCode = 404;                      <b class="conum">(2)</b>
+    response.end('&lt;h1&gt;Page introuvable&lt;/h1&gt;');      <b class="conum">(3)</b>
+  }
+});</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>Seul le chemin <code>/</code> est disponible dans l&#8217;application.</p>
+</li>
+<li>
+<p>Le code HTTP de la réponse est réglé sur <code>404</code>.</p>
+</li>
+<li>
+<p>Une page introuvable peut quand même retourner du contenu.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>La prise en compte d&#8217;une ressource inconnue à notre application fait émerger
+un nouveau concept&#160;: le <em>statut de la réponse</em>.
+Ce statut est un code numérique qui donne des indications sur la ressource retournée.
+Dans ce cas de figure le statut <code>404</code> de la réponse indique au client de
+ne pas considérer le contenu comme celui qui était demandé.<br>
+Par défaut et sauf mention contraire, le statut est <code>200</code>.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Principaux codes HTTP et leur signification.</caption>
+<colgroup>
+<col style="width: 14.2857%;">
+<col style="width: 28.5714%;">
+<col style="width: 57.1429%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Raison</th>
+<th class="tableblock halign-left valign-top">Explication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>200</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>OK</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La ressource demandée est retournée en réponse.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>301</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Moved Permanently</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La ressource demandée a été déplacée.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>304</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Not Modified</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La ressource n&#8217;a pas été modifiée depuis la dernière fois.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>400</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Bad Request</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La requête est incomplète ou incompréhensible par le serveur.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>401</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Unauthorized</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La ressource est accessible sur preuve d&#8217;identification.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>403</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Forbidden</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">L&#8217;accès à la ressource est interdit.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>404</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Not Found</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La ressource n&#8217;existe pas.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>500</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Internal Server Error</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Le serveur distant est en erreur.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Les statuts HTTP sont importants dans la création d&#8217;applications web.
+Leur code permet de vérifier que le client et le serveur se sont bien compris.<br>
+Si une page d&#8217;erreur est affichée avec un statut <code>200</code>, le client sera dans
+l&#8217;impossiblité de deviner qu&#8217;il ne s&#8217;agit pas du contenu attendu.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. D&#8217;autres codes HTTP utiles à connaître.</caption>
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 16.6666%;">
+<col style="width: 66.6668%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Code</th>
+<th class="tableblock halign-left valign-top">Raison</th>
+<th class="tableblock halign-left valign-top">Explication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>201</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Created</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La ressource demandée a été créée.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>202</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Accepted</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La demande a été acceptée et la ressource sera disponible ultérieurement.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>204</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>No Content</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La ressource demandée n&#8217;a pas de contenu.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>302</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Found</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La ressource demandée est temporairement disponible à une autre adresse.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>503</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Service Unavailable</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Le serveur distant répond qu&#8217;il n&#8217;est pas disponible pour l&#8217;instant.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Une application web devient vite compliquée à se gérer si nous avons à lister
+tous les chemins possibles.
+C&#8217;est à ce moment qu&#8217;entre en jeu le <em>routing</em>, une technique pour décrire
+des chemins d&#8217;accès au lieu de s&#8217;embourber dans une longue liste de <code>if/else</code>.</p>
+</div>
+<div class="paragraph">
+<p>Nous utilisons le module npm <em>find-my-way</em> (<span class="URL"><a href="https://npmjs.com/find-my-way" class="bare">npmjs.com/find-my-way</a></span>)
+pour transformer l&#8217;exemple <code>path/request-url.js</code>
+en quelque chose de plus modulaire&#160;:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre><span data-bash-subs="$"></span>node path/routes.js</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">path/routes.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const {createServer} = require('http');
+const router = require('find-my-way')();                <b class="conum">(1)</b>
+
+router.get('/', (request, response) =&gt; {                <b class="conum">(2)</b>
+  response.end('&lt;a href="/coucou"&gt;clique-moi&lt;/a&gt;');
+});
+
+router.get('/coucou', (request, response) =&gt; {          <b class="conum">(3)</b>
+  response.end('&lt;a href="/"&gt;retour&lt;/a&gt;');
+});
+
+const server = createServer().listen(4000)
+  .on('request', (req, res) =&gt; router.lookup(req, res));<b class="conum">(4)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>Création de la table de routage.</p>
+</li>
+<li>
+<p>Définition de la réponse du chemin d&#8217;accès <code>/</code>.</p>
+</li>
+<li>
+<p>Définition de la réponse du chemin d&#8217;accès <code>/coucou</code>.</p>
+</li>
+<li>
+<p>Intégration du routeur aux requêtes entrantes du serveur HTTP.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Les routeurs commencent à nous vraiment nous faire gagner du temps
+lorsqu&#8217;il s&#8217;agit d&#8217;extraire des informations utiles depuis le chemin et
+de les gérer dynamiquement&#160;:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre><span data-bash-subs="$"></span>node path/route-params.js</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">path/route-params.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const {createServer} = require('http');
+const router = require('find-my-way')();
+
+router.get('/hello/:word', (req, response, params) =&gt; { <b class="conum">(1)</b>
+  response.end(`&lt;p&gt;hello ${params.word}&lt;/p&gt;`);          <b class="conum">(2)</b>
+});
+
+const server = createServer().listen(4000)
+  .on('request', (req, res) =&gt; router.lookup(req, res));</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>Création d&#8217;une route paramétrée&#160;— le symbole <code>:word</code> est accessible dans le troisième argument, en tant que <code>params.word</code>.</p>
+</li>
+<li>
+<p>Affiche une phrase composée avec le paramètre de notre route.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Dirigez vous vers <code><a href="http://localhost:4000/hello/word" class="bare">localhost:4000/hello/word</a></code> pour voir le résultat s&#8217;afficher.
+Changez le dernier segment du chemin pour observer le changement.</p>
+</div>
+<div class="paragraph">
+<p>Ce mécanisme est utile pour relier un identifiant à un enregistrement précis
+en base de données, par exemple.
+Il se complète avec les <a href="#argument">arguments d&#8217;URL</a> pour véhiculer des
+éléments optionnels&#160;— nous en parlons quelques sections plus loin.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<div class="title">⚠️</div>
+</td>
+<td class="content">
+<div class="title"><span class="RemarquePreTitre">Sécurité</span> Filtrer les données entrantes</div>
+<div class="paragraph">
+<p>C&#8217;est le moment de rappeler que <strong>toute information saisie par l&#8217;utilisateur</strong>
+doit être filtrée et nettoyée avant d&#8217;être utilisée.
+L&#8217;exemple <code>path/route-params.js</code> n&#8217;est pas sécurisé&#160;; vous vous en rendrez
+compte en visitant <span class="URL"><a href="http://localhost:4000/hello/&lt;script&gt;alert(h4ck)&lt;%2Fscript&gt;" class="bare">localhost:4000/hello/&lt;script&gt;alert(h4ck)&lt;%2Fscript&gt;</a></span>.<br>
+Ce type de failles s&#8217;exploite pour faire fuiter des données confidentielles.</p>
+</div>
+<div class="paragraph">
+<p>Nous verrons tous ces aspects plus en détail dans la section
+<a href="#security">protéger l&#8217;application</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Enfin, les routeurs contextualisent les actions à effectuer vis à vis d&#8217;une
+ressource grâce au <em>verbe HTTP</em>.
+Le verbe communique une intention&#160;— récupération, mise à jour, suppression.
+Le routeur organise notre code pour déclencher une action adaptée
+à la méthode employée&#160;:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre><span data-bash-subs="$"></span>node path/method.js</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">path/method.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const {createServer} = require('http');
+const router = require('find-my-way')();
+
+router.get('/', (request, response) =&gt; {          <b class="conum">(1)</b>
+  response.end('Bienvenue');
+});
+
+router.head('/', (request, response) =&gt; {         <b class="conum">(2)</b>
+  response.writeHead(200, {                       <b class="conum">(3)</b>
+    'X-Jobs': 'https://jobs.humancoders.com'      <b class="conum">(4)</b>
+  });
+  response.end('Invisible');                      <b class="conum">(5)</b>
+});
+
+const server = createServer().listen(4000)
+  .on('request', (req, res) =&gt; router.lookup(req, res));</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>Définition du chemin d&#8217;accès <code>/</code>&#160;— verbe <code>GET</code> (récupération).</p>
+</li>
+<li>
+<p>Définition du chemin d&#8217;accès <code>/</code>&#160;— verbe <code>HEAD</code> cette fois.</p>
+</li>
+<li>
+<p>La méthode <code>response.writeHead</code> est un moyen de définir le statut en même temps que les entêtes de réponse.</p>
+</li>
+<li>
+<p>Définition d&#8217;une entête personnalisée&#160;— le préfixe <code>X-</code> indique qu&#8217;elle n&#8217;est pas liée au standard HTTP.</p>
+</li>
+<li>
+<p>Écriture du corps du message&#160;— nous verrons qu&#8217;il est ignoré et n&#8217;est pas transmis au client.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Les navigateurs web affichent seulement notre route <code>GET</code> car c&#8217;est
+leur fonctionnement par défaut.
+Ils comprennent le verbe <code>POST</code> pour <a href="#upload">uploader des fichiers</a> ou
+<a href="#post">transmettre des formulaires</a>.<br>
+Tournons-nous à nouveau vers le programme <code>curl</code> pour observer les différences
+entre la réponse nos deux verbes HTTP <code>GET</code> et <code>HEAD</code>&#160;:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre><span data-bash-subs="$"></span>curl http://localhost:4000
+Bienvenue
+<span data-bash-subs="$"></span>curl <mark>--head</mark> http://localhost:4000
+HTTP/1.1 200 OK
+<mark>X-Jobs: https://jobs.humancoders.com</mark>
+Date: Sun, 01 Jul 2018 15:43:56 GMT
+Connection: keep-alive</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>L&#8217;utilisation de <code>HEAD</code> renvoie uniquement les entêtes de réponse et nous
+économise la <a href="#templating">génération d&#8217;un gabarit</a>.
+D&#8217;un point de vue client, le verbe <code>HEAD</code> aide à inspecter des ressources
+sans avoir à télécharger le contenu&#160;— ce sont autant de kilo ou méga-octets
+d&#8217;économisés.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 3. Principaux verbes HTTP et leur utilisation.</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Verbe</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>GET</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Récupération d&#8217;une ressource.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>HEAD</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Récupération d&#8217;une ressource — seulement les entêtes.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>POST</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Création d&#8217;une ressource.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>PUT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mise à jour d&#8217;une ressource.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>PATCH</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mise à jour <em>partielle</em> d&#8217;une ressource.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DELETE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Demande de suppression d&#8217;une ressource.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>La responsabilité de comprendre ces verbes revient à notre application.
+C&#8217;est donc à nous de leur associer une action pour les prendre en charge.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="static">1.3. Répondre avec des fichiers statiques</h3>
+<div class="paragraph">
+<p>Les <a href="#path">chemins d&#8217;accès</a> s&#8217;associent aussi à des fichiers statiques.
+Ainsi, une URL correspond un fichier placé sur notre disque dur.
+J&#8217;ai placé 3 fichiers de différente nature (texte, image, PDF) pour illustrer
+les exemples de cette section.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre><span data-bash-subs="$"></span>tree -a static/files
+static/files
+├── .eslintrc.yaml
+├── doc.pdf
+└── screenshot.jpg</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Nous allons commencer par mettre à disposition un seul fichier, quel que soit
+le chemin demandé&#160;:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre><span data-bash-subs="$"></span>node static/routes.js</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">static/routes.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const {createServer} = require('http');
+const {createReadStream} = require('fs');
+const {join} = require('path');
+const router = require('find-my-way')();
+
+const staticFiles = (request, response, params) =&gt; {
+  const filename = join(__dirname, 'files', params.file);<b class="conum">(3)</b>
+  createReadStream(filename).pipe(response);             <b class="conum">(4)</b>
+};
+
+router.get('/files/:file', staticFiles);                 <b class="conum">(1)</b>
+router.head('/files/:file', staticFiles);                <b class="conum">(2)</b>
+
+const server = createServer().listen(4000)
+  .on('request', (req, res) =&gt; router.lookup(req, res));</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>Nous constituons un chemin d&#8217;accès avec <code>path.join</code>&#160;— cf. <a href="../chapter-04/index.html#path">chapitre 4</a>, module <code>path</code>.</p>
+</li>
+<li>
+<p>Nous créons un flux de lecture vers ce fichier&#160;— cf. <a href="../chapter-04/index.html#stream">chapitre 4</a>, module <code>stream</code>.</p>
+</li>
+<li>
+<p>Nous redirigeons le flux de lecture vers la réponse.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Ce que cet exemple nous apprend,
+c&#8217;est que l'<strong>objet de réponse est aussi un flux d&#8217;écriture</strong>.
+Peu importe le volume du fichier, l&#8217;envoi se régulera en fonction de la capacité
+de téléchargement du client et en consommant le minimum de mémoire possible.
+La lecture sera interrompue si le client annule le téléchargement.</p>
+</div>
+<div class="paragraph">
+<p>Nous pouvons à présent étendre ce savoir nouvellement acquis en
+<a href="#path">routant un chemin d&#8217;accès</a> vers le répertoire qui contient nos fichiers.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre><span data-bash-subs="$"></span>node static/routes.js</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">static/routes.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const {createServer} = require('http');
+const {createReadStream} = require('fs');
+const {join} = require('path');
+const router = require('find-my-way')();
+
+const staticFiles = (request, response, params) =&gt; {
+  const filename = join(__dirname, 'files', params.file);<b class="conum">(3)</b>
+  createReadStream(filename).pipe(response);             <b class="conum">(4)</b>
+};
+
+router.get('/files/:file', staticFiles);                 <b class="conum">(1)</b>
+router.head('/files/:file', staticFiles);                <b class="conum">(2)</b>
+
+const server = createServer().listen(4000)
+  .on('request', (req, res) =&gt; router.lookup(req, res));</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>Création d&#8217;une route paramétrée qui répond avec la fonction <code>staticFiles</code>.</p>
+</li>
+<li>
+<p>Réutilisation de la fonction <code>staticFiles</code> pour répondre à la méthode <code>HEAD</code>&#160;— nous verrons plus loin pourquoi c&#8217;est important.</p>
+</li>
+<li>
+<p>Composition dynamique du chemin d&#8217;accès au fichier.</p>
+</li>
+<li>
+<p>Comme toute à l&#8217;heure, nous redirigeons le flux de lecture du fichier vers la réponse.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Si nous accédons à <code><a href="http://localhost:4000/files/doc.pdf" class="bare">localhost:4000/files/doc.pdf</a></code> et <code><a href="http://localhost:4000/files/screenshot.jpg" class="bare">localhost:4000/files/screenshot.jpg</a></code>,
+nous verrons les deux documents s&#8217;afficher dans notre navigateur.
+Un problème cependant&#160;: l&#8217;accès à un chemin inconnu fait planter l&#8217;application.</p>
+</div>
+<div class="paragraph">
+<p>Notre approche est un peu trop naïve en regardant les entêtes
+de réponse d&#8217;un peu plus près&#160;:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre><span data-bash-subs="$"></span>curl --head 'http://localhost:4000/files/doc.pdf'  <span data-bash-conum="1"></span>
+HTTP/1.1 200 OK
+Date: Mon, 02 Jul 2018 15:47:33 GMT
+Connection: keep-alive</pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>C&#8217;est pour exécuter cette commande que j&#8217;ai ajouté l&#8217;écoute de la méthode <code>HEAD</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>En fait, nous gagnerions à documenter la ressource en transmettant
+des entêtes supplémentaires.
+La question est&#160;: lesquelles&#160;?</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<div class="title">⚠️</div>
+</td>
+<td class="content">
+<div class="title"><span class="RemarquePreTitre">Sécurité</span> Filtrer les données entrantes</div>
+<div class="paragraph">
+<p><strong>Toute information saisie par l&#8217;utilisateur</strong> doit être filtrée et nettoyée avant
+d&#8217;être utilisée.
+L&#8217;exemple <code>static/routes.js</code> n&#8217;est pas sécurisé&#160;; vous vous rendrez
+compte en visitant <span class="URL"><a href="http://localhost:4000/files/..%2F..%2Fhello.js" class="bare">localhost:4000/files/..%2F..%2Fhello.js</a></span> que ce chemin
+permet de remonter jusqu&#8217;à un fichier situé hors du répertoire <code>static/files</code>.<br>
+Ce type de faille s&#8217;exploite pour accéder aux données confidentielles de notre
+système d&#8217;exploitation.</p>
+</div>
+<div class="paragraph">
+<p>Nous verrons tous ces aspects plus en détail dans la section
+<a href="#security">protéger l&#8217;application</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Nous allons nous baser sur le module npm <em>send</em> (<span class="URL"><a href="https://npmjs.com/send" class="bare">npmjs.com/send</a></span>)
+pour améliorer l&#8217;exemple précédent et constater par nous-même quelles
+entêtes sont utiles.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre><span data-bash-subs="$"></span>node static/send.js</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">static/send.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const {createServer} = require('http');
+const {join} = require('path');
+const send = require('send');
+const router = require('find-my-way')();
+
+const staticFiles = (request, response, params) =&gt; {
+  const pathname = params['*'];               <b class="conum">(2)</b>
+  const filename = join(__dirname, 'files', pathname);
+
+  send(request, filename).pipe(response);     <b class="conum">(3)</b>
+};
+
+router.get('/files/*', staticFiles);          <b class="conum">(1)</b>
+router.head('/files/*', staticFiles);
+
+const server = createServer().listen(4000)
+  .on('request', (req, res) =&gt; router.lookup(req, res));</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>En utilisant la syntaxe <code>*</code>, le routeur accepte une arborescence de chemins&#160;— <code>doc.pdf</code> tout comme <code>un/long/chemin.pdf</code>.</p>
+</li>
+<li>
+<p>L&#8217;arborescence se récupère avec un paramètre du même nom&#160;— <code>*</code>.</p>
+</li>
+<li>
+<p>Le module <em>send</em> prend en charge la suite de la transmission.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Pas de grands bouleversements donc.
+Si ce n&#8217;est que les fichiers inexistants ne font plus planter l&#8217;application
+et que les entêtes de réponses sont plus fournies qu&#8217;avant&#160;:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre><span data-bash-subs="$"></span>curl --head 'http://localhost:4000/files/doc.pdf'
+HTTP/1.1 200 OK
+Accept-Ranges: bytes
+Cache-Control: public, max-age=0
+Last-Modified: Tue, 12 Jun 2018 08:02:40 GMT
+ETag: W/"10c5d-163f304b0d2"
+Content-Type: application/pdf
+Content-Length: 68701
+Date: Mon, 02 Jul 2018 15:52:18 GMT
+Connection: keep-alive</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Parmi les entêtes les plus importantes, nous trouvons <code>Content-Type</code>,
+<code>Content-Length</code> et <code>Last-Modified</code>.
+Elles aident le client à interpréter ou représenter le contenu de manière optimale,
+à informer de la taille du contenu (utile à l&#8217;animation de la barre de
+téléchargement du navigateur web) et à distinguer l&#8217;ancienneté du fichier.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 4. Entêtes de réponse utiles pour transmettre des fichiers.</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Entête</th>
+<th class="tableblock halign-left valign-top">Utilité</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Content-Type</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Explicite la nature du contenu mis à disposition.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Content-Disposition</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indique si le contenu doit être affiché dans le client ou téléchargé sous un nom particulier.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Cache-Control</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Active ou désactive la mise en cache de ce fichier par le client.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Last-Modified</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indique la date de dernière modification du contenu.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Content-Length</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indique la longueur (en octets) du contenu.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Content-Encoding</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indique le mode de compression utilisé pour transmettre les données.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Accept-Ranges</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indique la possibilité ou non de reprendre un téléchargement ou d&#8217;en choisir un segment avec l&#8217;entête de requête <code>Range</code>.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">💡</div>
+</td>
+<td class="content">
+<div class="title"><span class="RemarquePreTitre">Performance</span> Utiliser Apache ou nginx en production</div>
+<div class="paragraph">
+<p>Si Node s&#8217;en sort bien pour envoyer des fichiers vers le client,
+les serveurs web <em>Apache</em> et <em>nginx</em> sont encore plus performants à ce niveau.
+C&#8217;est quelque chose à considérer si votre application sert principalement
+des fichiers statiques.</p>
+</div>
+<div class="paragraph">
+<p>Lisez le <a href="../chapter-06/index.html">chapitre 6</a> pour apprendre à configurer
+Node derrière un autre serveur web.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="arguments">1.4. Réagir aux arguments d&#8217;URL</h3>
+<div class="paragraph">
+<p>Les arguments d&#8217;une URL servent à <strong>affiner le contexte d&#8217;affichage</strong> d&#8217;une
+ressource donnée.
+Ces options servent par exemple à paginer du contenu ou spécifier une dimension,
+un filtre d&#8217;affichage ou encore une expression de recherche.
+En clair, elles servent à influencer la représentation d&#8217;une ressource
+ou information.</p>
+</div>
+<div class="paragraph">
+<p>Par défaut, les arguments sont représentés de manière textuelle avec
+le chemin d&#8217;accès, dans l&#8217;attribut <code>request.url</code>&#160;:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre><span data-bash-subs="$"></span>node arguments/intro.js</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">arguments/intro.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const {createServer} = require('http');
+const server = createServer().listen(4000);
+
+server.on('request', (request, response) =&gt; {
+  response.end(request.url);      <b class="conum">(1)</b>
+});</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>La page demandée affiche l&#8217;attribut de requête <code>url</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Nous voyons s&#8217;afficher <code>/test?cle=valeur&amp;option</code> en nous rendant à l&#8217;adresse
+<code><a href="http://localhost:4000/test?cle=valeur&amp;option" class="bare">localhost:4000/test?cle=valeur&amp;option</a></code>.
+Ce n&#8217;est pas utilisable en l&#8217;état.</p>
+</div>
+<div class="paragraph">
+<p>Le <a href="../chapter-04/index.html#url">module <code>url</code></a>
+(cf. <a href="../chapter-04/index.html">chapitre 4</a>) entre en jeu.
+En plus de destructurer une URL entière, il sait aussi décomposer les options
+et les transformer en un objet utilisable côté Node&#160;:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre><span data-bash-subs="$"></span>node arguments/parse.js</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">arguments/parse.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const {createServer} = require('http');
+const {parse} = require('url');
+const server = createServer().listen(4000);
+
+server.on('request', (request, response) =&gt; {
+  const {search, query} = parse(request.url, true); <b class="conum">(1)</b>
+
+  response.write(`${search}\n\n`);                  <b class="conum">(2)</b>
+  response.write(JSON.stringify(query));            <b class="conum">(3)</b>
+  response.end();
+});</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>Le deuxième argument de la fonction <code>url.parse</code> décompose les arguments, disponibles dans l&#8217;attribut <code>query</code> de l&#8217;objet retourné.</p>
+</li>
+<li>
+<p>L&#8217;attribut <code>search</code> correspond aux arguments, sous forme textuelle.</p>
+</li>
+<li>
+<p>L&#8217;attribut <code>query</code> est un objet&#160;— ici, transformé pour être affiché dans la page sous forme de texte.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Cette fois, nous voyons s&#8217;afficher <code>{"cle": "valeur", "option": ""}</code> dans notre
+navigateur lorsque nous nous rendons sur <code><a href="http://localhost:4000/test?cle=valeur&amp;option" class="bare">localhost:4000/test?cle=valeur&amp;option</a></code>.
+C&#8217;est tout ce qu&#8217;il nous fallait pour l&#8217;utiliser dans notre application.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre><span data-bash-subs="$"></span>node arguments/format.js</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">arguments/format.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const {createServer} = require('http');
+const {parse} = require('url');
+const {format} = require('date-fns');
+const server = createServer().listen(4000);
+
+server.on('request', (request, response) =&gt; {
+  const {query} = parse(request.url, true);
+  const text = format(new Date(), 'YYYY-MM-DD');
+
+  if (query.format === 'svg') {                     <b class="conum">(1)</b>
+    response.setHeader('Content-Type', 'text/html');<b class="conum">(2)</b>
+    response.end(`&lt;svg viewBox="0 0 200 100"&gt;
+      &lt;text x="0" y="50"&gt;${text}&lt;/text&gt;
+    &lt;/svg&gt;`);
+  }
+  else {
+    response.end(text);                             <b class="conum">(3)</b>
+  }
+});</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>Nous rentrons dans ce bloc en présence de l&#8217;argument d&#8217;URL <code>format=svg</code>.</p>
+</li>
+<li>
+<p>Une entête <code>Content-Type</code> fait que le contenu est interprêté (et affiché) comme du HTML&#160;— en retirant cette ligne, le document sera alors téléchargé.</p>
+</li>
+<li>
+<p>Sinon, le reste du temps nous affichons la date telle quelle, en tant que texte.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Les deux URL <code><a href="http://localhost:4000/date?format=svg" class="bare">localhost:4000/date?format=svg</a></code> et <code><a href="http://localhost:4000/date" class="bare">localhost:4000/date</a></code> font
+référence à une même ressource mais l&#8217;affichage s&#8217;adapte au contexte.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 5. Exemples d&#8217;arguments et de leur représentation en structure ECMAScript.</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Argument</th>
+<th class="tableblock halign-left valign-top">Représentation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>?cle=valeur</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{cle: "valeur"}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>?cle</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{cle: ""}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>?cle[]=1&amp;cle[]=2</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{cle: [1,2]}</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<div class="title">💡</div>
+</td>
+<td class="content">
+<div class="title"><span class="RemarquePreTitre">Performance</span> Module npm <em>parseurl</em></div>
+<div class="paragraph">
+<p>Si vous êtes à la recherche de performance, le module npm <em>parseurl</em>
+(<span class="URL"><a href="https://npmjs.com/parseurl" class="bare">npmjs.com/parseurl</a></span>) retourne les mêmes résultats
+tout en étant jusqu&#8217;à 10 fois plus rapide que le module natif à Node.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="post">1.5. Interpréter un corps de message (<code>POST</code>, <code>PUT</code>)</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>JSON</p>
+</li>
+<li>
+<p>formulaire</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="upload">1.6. Uploader des fichiers</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>solo</p>
+</li>
+<li>
+<p>plusieurs (multipart)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cookies">1.7. Garder un lien avec les cookies</h3>
+<div class="paragraph">
+<p>Un cookie est une information partagée entre un client et un serveur pour
+une durée limitée dans le temps.
+Le client transmet les cookies au serveur afin que ce dernier contextualise
+la demande&#160;— un identifiant utilisateur, des préférences ou autre.
+Un cookie créé par le domaine <code>example.com</code> est envoyé seulement lors d&#8217;une
+visite à <code>example.com</code>&#160;— sous-domaines inclus.</p>
+</div>
+<div class="paragraph">
+<p>Ce mécanisme est aujourd&#8217;hui tristement célèbre pour son détournement
+par les industries de la publicité, du marketing et de la revente de données.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre><span data-bash-subs="$"></span>node cookies/set-cookie.js</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">cookies/set-cookie.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const {createServer} = require('http');
+const server = createServer().listen(4000);
+
+server.on('request', (request, response) =&gt; {
+  response.setHeader('Set-Cookie', 'compteur=1'); <b class="conum">(1)</b>
+  response.end();
+});</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>L&#8217;entête de réponse <code>Set-Header</code> crée/modifie la valeur d&#8217;un cookie chez le client&#160;— ici, le cookie <code>compteur</code> est créé avec la valeur <code>1</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Nous pouvons observer la création du cookie en nous rendant sur <code><a href="http://localhost:4000" class="bare">localhost:4000</a></code>
+avec un navigateur, puis en ouvrant les outils de développement.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/cookies-browser.png" alt="cookies browser">
+</div>
+<div class="title">Figure 1. Visualisation des cookies avec les outils de développement du navigateur Firefox.</div>
+</div>
+<div class="paragraph">
+<p>Les cookies sont transmis du client au serveur <strong>à chaque requête</strong>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre><span data-bash-subs="$"></span>node cookies/read.js</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">cookies/read.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const {createServer} = require('http');
+const server = createServer().listen(4000);
+
+server.on('request', (request, response) =&gt; {
+  const cookie = request.headers.cookie;  <b class="conum">(1)</b>
+
+  response.end(`Contenu : ${cookie}`);    <b class="conum">(2)</b>
+});</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>Les cookies se lisent en inspectant l&#8217;entête de requête <code>Cookie</code>.</p>
+</li>
+<li>
+<p>Affiche <code>Contenu&#160;: compteur=1</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Nous avons récupéré la valeur de l&#8217;entête contenant le cookie.
+Nous devons faire un effort supplémentaire pour transformer cette valeur textuelle
+en une structure ECMAScript qui fait sens pour notre application.</p>
+</div>
+<div class="paragraph">
+<p>Nous allons nous aider pour cela du module npm <em>cookie</em>
+(<span class="URL"><a href="https://npmjs.com/cookie" class="bare">npmjs.com/cookie</a></span>).
+Il sait interpréter le contenu d&#8217;une entête HTTP et il sait également faire
+l&#8217;inverse, transformer une structure ECMAScript vers du texte utilisable
+dans une entête de réponse <code>Set-Cookie</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre><span data-bash-subs="$"></span>node cookies/parse.js</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">cookies/parse.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const {createServer} = require('http');
+const {parse} = require('cookie');
+const server = createServer().listen(4000);
+
+server.on('request', (request, response) =&gt; {
+  const cookies = parse(request.headers.cookie);  <b class="conum">(1)</b>
+
+  response.end(JSON.stringify(cookies));          <b class="conum">(2)</b>
+});</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>Nous passons l&#8217;intégralité de l&#8217;entête de requête <code>Cookie</code> à la fonction <code>cookie.parse</code>.</p>
+</li>
+<li>
+<p>Affiche <code>{"compteur":"1"}</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>La méthode <code>response.setHeader()</code> accepte un tableau pour créer plusieurs
+cookies en même temps&#160;:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre><span data-bash-subs="$"></span>node cookies/set-multiple.js</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">cookies/set-multiple.js</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">'use strict';
+
+const {createServer} = require('http');
+const {parse, serialize} = require('cookie');
+const server = createServer().listen(4000);
+
+server.on('request', (request, response) =&gt; {
+  const {compteur} = parse(request.headers.cookie);
+  const compteur2 = Number(compteur) + 1;
+
+  response.setHeader('Set-Cookie', [                    <b class="conum">(1)</b>
+    'language=fr; Max-Age: 9000000',                    <b class="conum">(2)</b>
+    'is_admin=1; Path=/admin; HttpOnly',                <b class="conum">(3)</b>
+    serialize('compteur', compteur2, {httpOnly: true}), <b class="conum">(4)</b>
+    //`compteur=${compteur2}; HttpOnly`                 <b class="conum">(5)</b>
+  ]);
+
+  response.end();
+});</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<ol>
+<li>
+<p>Nous créons plusieurs cookies en passant un tableau de valeurs à la méthode <code>response.setHeader()</code>.</p>
+</li>
+<li>
+<p>Crée un cookie dont la durée est limitée à 9 millions de secondes (~104 jours).</p>
+</li>
+<li>
+<p>Crée un cookie visible pour le chemin d&#8217;accès <code>/path</code> (et les sous-chemins)&#160;— la deuxième directive empêche les scripts clients de lire et modifier la valeur du cookie.</p>
+</li>
+<li>
+<p>L&#8217;utilisation de <code>cookie.serialize</code> est une autre manière de créer des cookies en construisant un objet ECMAScript au lieu d&#8217;une chaîne de caractères.</p>
+</li>
+<li>
+<p>La ligne précédente équivaut à l&#8217;écriture de cette ligne.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Le précédent exemple était aussi l&#8217;occasion de compléter les cookies avec
+des directives.
+Ces directives impactent leur durée de vie et leur visibilité.</p>
+</div>
+<div class="paragraph">
+<p>Ça s&#8217;observe en lançant à nouveau le script <code>cookies/parse.js</code>&#160;:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre><span data-bash-subs="$"></span>node cookies/parse.js</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>L&#8217;accès à <code><a href="http://localhost:4000" class="bare">localhost:4000</a></code> affiche quelque chose comme <code>{"compteur":"1","language":"fr"}</code>
+tandis que <code><a href="http://localhost:4000/admin" class="bare">localhost:4000/admin</a></code> affiche un cookie supplémentaire&#160;—
+<code>{"is_admin":"1","compteur":"1","language":"fr"}</code>.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 6. Directives complémentaires à la valeur d&#8217;un cookie.</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Directive</th>
+<th class="tableblock halign-left valign-top">Explication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Max-Age</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Durée de vie du cookie en secondes.<br>
+Si le nombre est inférieur ou égal à zéro, le cookie est supprimé.<br>
+Si cette valeur n&#8217;est pas préciée, le cookie est supprimé à la fin de la session.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Domain</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Spécifie le domaine ou les sous-domaines applicables au cookie.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Path</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Contraint le cookie à ce répertoire et tous ses sous-répertoires.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Secure</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Le cookie n&#8217;est envoyée que si le document est demandé via HTTPS.</p>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>HttpOnly</code></p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Le cookie ne peut pas être lu ou modifié côté client, via la variable <code>document.cookie</code>.</p>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Nous savons maintenant garder le lien avec nos utilisateurs.
+Nous utiliserons d&#8217;ailleurs les cookies pour <a href="#sessions">maintenir une session</a>
+avec un framework web.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="templating">1.8. Modulariser les gabarits de présentation</h3>
+<div class="paragraph">
+<p>je parle de nunjucks mais en fait on s&#8217;en fiche y&#8217;en a plein de bien
+chacun son tyle&#160;: pug, twig, ejs, handlebars</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="dev">1.9. Pendant le développement : relancer le serveur automatiquement</h3>
+<div class="paragraph">
+<p>Vous avez modifié un des exemples de ce chapitre pendant qu&#8217;il était en
+cours d&#8217;exécution et vous avez remarqué que résultat ne changeait pas&#160;?</p>
+</div>
+<div class="paragraph">
+<p>C&#8217;est normal&#160;: la version du code utilisée par Node est celle qui a été évaluée
+au lancement du script.
+Les <strong>changements sont pris en compte manuellement, à la prochaine exécution</strong>.
+C&#8217;est à dire après avoir stoppé et lancé à nouveau le script.</p>
+</div>
+<div class="paragraph">
+<p>Le module npm exécutable <em>nodemon</em> (<span class="URL"><a href="https://npmjs.com/nodemon" class="bare">npmjs.com/nodemon</a></span>)
+relance automatiquement une commande dès qu&#8217;il détecte un changement
+dans le répertoire courant.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre><span data-bash-subs="$"></span>nodemon cookies/parse.js
+<span data-bash-subs="#"></span>au lieu de "node cookies/parse.js"</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>La commande précédente relance <code>cookies/parse.js</code> si ce fichier change,
+si un fichier dans le répertoire <code>cookies/</code> change mais aussi si un fichier
+dans les répertoires voisins au répertoire <code>cookies/</code> change.</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;option <code>--watch</code> restreint ou élargit le champ d&#8217;observation.
+La commande suivante relance le serveur seulement si un fichier JavaScript
+est modifié dans le répertoire <code>cookies/</code>&#160;:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre><span data-bash-subs="$"></span>nodemon --watch cookies cookies/parse.js</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>L&#8217;option <code>--ext</code> filtre les fichiers observés en fonction de leur type.
+La commande suivante relance le serveur si un fichier JavaScript, CSS ou HTML
+est modifié dans le répertoire courant&#160;:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre><span data-bash-subs="$"></span>nodemon --ext js,css,html cookies/parse.js</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">💬</div>
+</td>
+<td class="content">
+<div class="title"><span class="RemarquePreTitre">Question</span> Installation globale, installation locale ?</div>
+<div class="paragraph">
+<p>Vous n&#8217;êtes pas sûr·e de la meilleure manière d&#8217;installer et d&#8217;utiliser
+le module <em>nodemon</em>&#160;?
+Je vous invite à relire la section
+<a href="../chapter-05/index.html#install.global">exécutable système</a> du chapitre 5
+consacré à npm.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="express">2. Organiser une application avec le <em>framework</em> express</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Express mais ça pourrait être un autre
+Y&#8217;a plus performant (fastify), plus orienté données (restify),
+plus asynchrone (koa) et plus tout terrain (hapi).</p>
+</div>
+<div class="paragraph">
+<p>choix du bien documenté, bien outillé
+proche du module http (plus facile pour greffer des modules npm)</p>
+</div>
+<div class="paragraph">
+<p>ce qui est expliqué après s&#8217;applique sans les frameworks
+c&#8217;est une manière "consolidée" d&#8217;organiser son code et d&#8217;y brancher des trucs</p>
+</div>
+<div class="sect2">
+<h3 id="middleware">2.1. Greffer des extensions</h3>
+<div class="paragraph">
+<p>interception / transformation des requêtes entrantes
+les routes obtiennent</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="views">2.2. Brancher les gabarits de présentation</h3>
+<div class="paragraph">
+<p>c&#8217;est pas très différent mais y&#8217;a un module intermédiaire
+qui gère ça tranquillement</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="frontend">2.3. Intégrer les ressources front-end (CSS, JavaScript)</h3>
+<div class="paragraph">
+<p>mieux vaut les générer statiquement
+rebuild à la demande
+des fois y&#8217;a des outils qui font ça (on perd de vue les erreurs je trouve)</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="security">2.4. Protéger l&#8217;application</h3>
+<div class="paragraph">
+<p><a href="https://npmjs.com/helmet" class="bare">npmjs.com/helmet</a>
+<a href="https://npmjs.com/safe-regex" class="bare">npmjs.com/safe-regex</a> pour utiliser une regex sur du contenu fourni par utilisateur
+<a href="https://npmjs.com/xss" class="bare">npmjs.com/xss</a>
+<a href="https://npmjs.com/sql-escape-string" class="bare">npmjs.com/sql-escape-string</a>
+<a href="https://npmjs.com/dompurify" class="bare">npmjs.com/dompurify</a></p>
+</div>
+<div class="paragraph">
+<p>path traversal (indexOf)
+use strict (réduit les possibilités d&#8217;exploiter des bizarreries de JS)</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="database">2.5. Brancher une base de données</h3>
+<div class="paragraph">
+<p>Mémoriser les données entre deux redémarrages
+Partager les données entre plusieurs instances</p>
+</div>
+<div class="paragraph">
+<p>on va utiliser sqlite parce que pas de dépendance logicielle
+node-sqlite pour les promesses mais on aurait très bien pu utiliser sqlite3</p>
+</div>
+<div class="sect3">
+<h4 id="quelle_base_de_données_choisir">2.5.1. Quelle base de données choisir ?</h4>
+<div class="paragraph">
+<p>en fait on peut en prendre plusieurs, ajuster stratégies</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>en mémoire</strong><br>
+Le stockage est dit <em>éphémère</em> car l&#8217;information est stockée dans la mémoire vive de la machine et disparait dès que l&#8217;application est interrompue&#160;;</p>
+</li>
+<li>
+<p>sous forme de <strong>fichiers</strong><br>
+Le stockage est <em>physiquement lié</em> à la machine hébergeant l&#8217;application.
+Ce support est davantage adapté à un <em>cache</em> n&#8217;ayant pas besoin d&#8217;être actualisé après l&#8217;initialisation de l&#8217;application&#160;;</p>
+</li>
+<li>
+<p>via une <strong>API</strong><br>
+Le stockage est <em>nécessairement dissocié</em> à la machine hébergeant l&#8217;application.
+L&#8217;accès à la lecture et à l&#8217;écriture de l&#8217;information se fait au travers d&#8217;une <em>interface de données</em> accessible via HTTPS.<br>
+Nous pourrions tout à fait envisager d&#8217;utiliser les APIs de GitHub, Kinto, Google Drive ou KeyBase.io pour persister et collecter des données brutes ou transformées&#160;;</p>
+</li>
+<li>
+<p>en <strong>base de données</strong><br>
+Le stockage n&#8217;est <em>pas nécessairement lié</em> à la machine hébergeant l&#8217;application.
+L&#8217;information persiste si l&#8217;application est interrompue.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">💬</div>
+</td>
+<td class="content">
+<div class="title"><span class="RemarquePreTitre">Question</span> Dois-je forcément utiliser MongoDB avec Node ?</div>
+<div class="paragraph">
+<p>Doit-on nécessairement <strong>utiliser <em>MongoDB</em></strong>, une base de données <em>orientée documents</em> ou <em>JSON</em> avec une application Node&#160;?
+La réponse est catégorique&#160;: c&#8217;est <strong>non</strong>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Tout type de base de données s&#8217;interface avec Node</strong>, qu&#8217;elle soit <em>relationnelle</em> (Postgres, MariaDB, MySQL), <em>clé/valeur</em> (Redis), en <em>colonnes</em> (Cassandra) ou <em>orientée documents</em> (MongoDB, ElasticSearch).</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sessions">2.6. Sessions utilisateur</h3>
+
+</div>
+<div class="sect2">
+<h3 id="logs">2.7. Tracer les actions</h3>
+<div class="paragraph">
+<p>importants pour retrouver des problèmes
+contexte où plein de personnes accèdent à une application, font plein de trucs
+(ça dépasse l&#8217;échelle de compréhension d&#8217;un cerveau)</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="tests">3. Vers un code réutilisable et testable</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="modulariser_le_code_des_routes">3.1. Modulariser le code des routes</h3>
+<div class="paragraph">
+<p>but est de rendre une fonction de render la plus fine possible</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>middlewares</p>
+</li>
+<li>
+<p>initialisation</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="tester_le_code_indépendamment_du_framework">3.2. Tester le code indépendamment du framework</h3>
+<div class="paragraph">
+<p>mocha, chai, bon duo</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="tester_les_aspects_cruciaux_du_front_end">3.3. Tester les aspects cruciaux du front-end</h3>
+<div class="paragraph">
+<p>Cf. chapter-09/karma</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="déployer_automatiquement">3.4. Déployer automatiquement</h3>
+<div class="paragraph">
+<p>Cf. chapter-06</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="advanced">4. Pour aller plus loin</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="advanced.server">4.1. Pourquoi lancer un serveur ?</h3>
+<div class="paragraph">
+<p>Il y a des environnements ou des logiciels comme Apache ou Nginx intègrent
+notre langage de programmation avec des modules, par exemple PHP avec le <code>mod_php</code>
+ou Perl avec le <code>mod_cgi</code>.
+Les requêtes entrantes sont dirigées vers un script que le module interprète
+et retourne une réponse, dynamiquement.</p>
+</div>
+<div class="paragraph">
+<p>Le <strong>script PHP est interprété à chaque requête</strong> et tout cette représentation
+est détruite une fois la réponse envoyée&#160;— mémoire, valeurs des variables, configuration.
+Il faut recourir à un ensemble de modules additionnels pour optimiser ce gâchis
+de ressources informatiques&#160;— cache d&#8217;interprétation, cache applicatif, cache de configuration.</p>
+</div>
+<div class="paragraph">
+<p>Démarrer un serveur HTTP dans le langage de notre application nous éloigne de
+ce modèle coûteux et nous rapproche d&#8217;un fonctionnement plus performant, organisé
+autour de ces 3 piliers&#160;:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Node et Apache/Nginx fonctionnent ensemble</strong>&#160;— ils se font le relais des requêtes
+et des réponses car ils parlent le même protocole&#160;;</p>
+</li>
+<li>
+<p><strong>le serveur Node est préchauffé</strong>&#160;— une requête entrante trouve une application
+déjà opérationnelle, déjà configurée, déjà connectée à une base de données
+et prête à répondre&#160;;</p>
+</li>
+<li>
+<p><strong>le code exécuté est spécifique à la requête</strong>&#160;— l&#8217;application reçoit chaque
+requête de manière indépendante en ayant le minimum d&#8217;effort à faire pour
+générer une réponse.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Autrement dit, ce modèle réduit le temps de parcours entre une requête entrante
+et une réponse sortante.
+Ça a un impact significatif sur le temps d&#8217;apparition de l&#8217;icône de chargement
+côté client.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="http">4.2. Comprendre le modèle HTTP</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>quand une requête arrive ça veut dire quoi</p>
+</li>
+<li>
+<p>browser&#160;: GET <a href="http://monsite.com" class="bare">monsite.com</a></p>
+</li>
+<li>
+<p>montrer une requête HTTP brute</p>
+</li>
+<li>
+<p>surprise&#160;: c&#8217;est que du texte</p>
+</li>
+<li>
+<p>c&#8217;est interprété de deux côtés&#160;: par le client (programme qui demande, adresse une requête&#8201;&#8212;&#8201;un navigateur web c&#8217;est un type de client) et le serveur (programme qui reçoit et renvoie des réponses)</p>
+</li>
+<li>
+<p>et une réponse ça ressemble à quoi&#160;?</p>
+</li>
+<li>
+<p>dans la réponse y&#8217;a un statut (200, etc) (c&#8217;est pour ça 404)</p>
+</li>
+<li>
+<p>dans la réponse y&#8217;a un type de contenu (Content-Type)</p>
+</li>
+<li>
+<p>le corps de la réponse peut être du texte, qui suit un certain format (HTML, texte, XML, JSON, image/jpg, image/png)</p>
+</li>
+<li>
+<p>le client interprète en fonction de ses capacités et d&#8217;hypothèses pragmatiques</p>
+</li>
+<li>
+<p>un navigateur web&#160;: il interprète le HTML, l&#8217;affiche, et demande les ressources listées dans les différentes balises (img, video, audio)</p>
+</li>
+<li>
+<p>fait autant de requêtes que nécessaire pour les obtenir et les afficher</p>
+</li>
+<li>
+<p>attention s&#8217;il y en a trop, ça fait le même effet que retirer un courier à la Poste à la mauvaise heure</p>
+</li>
+<li>
+<p>le poids des ressources à transférer a un impact (plus c&#8217;est lourd, plus c&#8217;est gros, plus c&#8217;est long à charger&#160;— c&#8217;est amplifié par la qualité et le débit de la connexion Internet)</p>
+</li>
+<li>
+<p>[TIP]&#160;: les WebView ce sont des navigateurs web, genre pour iOS, Android etc.</p>
+</li>
+<li>
+<p>un client en ligne de commande (curl, wget)&#160;: il n&#8217;interpète pas, récupère juste</p>
+</li>
+<li>
+<p>c&#8217;est utilisé pour faire du scrapping</p>
+</li>
+<li>
+<p>c&#8217;est utilisé pour donner ça à d&#8217;autres programmes (enjoliver le résultat, extraire des informations)</p>
+</li>
+<li>
+<p>voir au chapitre 8 pour en savoir plus sur le fonctionnement d&#8217;applications en ligne de commande</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./images/httpstat.png" alt="httpstat">
+</div>
+<div class="title">Figure 2. Temporalité de l&#8217;exécution d&#8217;une requête HTTP et des entêtes de réponse.</div>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/jshttp" class="bare">github.com/jshttp</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="authentication">4.3. Authentifier des utilisateurs</h3>
+
+</div>
+<div class="sect2">
+<h3 id="api">4.4. API REST : l&#8217;application web orientée données</h3>
+
+</div>
+<div class="sect2">
+<h3 id="job-queue">4.5. Déléguer le travail aux files d&#8217;attente</h3>
+
+</div>
+<div class="sect2">
+<h3 id="lambda">4.6. Une application minimaliste avec les Lambda</h3>
+<div class="paragraph">
+<p><a href="https://npmjs.com/micro" class="bare">npmjs.com/micro</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="https">4.7. Et HTTPS dans tout ça ?</h3>
+
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="conclusion">5. Conclusion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>TBD.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Dernière mise à jour 2018-07-12 08:14:32 Coordinated Universal Time
+</div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
+</body>
+</html>
